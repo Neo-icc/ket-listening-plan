@@ -260,8 +260,6 @@
     }
     table.card-table tr:first-child td { padding-top: 0; }
     /* 同尺度对比图谱：窄屏可横向滑动，保持比例可读 */
-    .scale-map { overflow-x: auto; -webkit-overflow-scrolling: touch; }
-    .scale-map .track, .scale-map-ruler { min-width: 460px; }
     /* 功能分层卡：窄屏堆叠单列 */
     .layer-grid { grid-template-columns: 1fr !important; }
   }
@@ -274,6 +272,36 @@
     .stage-block, .card, .checkpoint { break-inside: avoid; }
     section { break-inside: avoid-page; }
   }
+
+/* ===== 同尺度对标图（甘特式）===== */
+.gm { font-size: 12px; color: #374151; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.gm-inner { min-width: 660px; }
+.gm-head { display: flex; align-items: flex-end; height: 34px; }
+.gm-axis { flex: 1; position: relative; height: 34px; }
+.gm-tick { position: absolute; bottom: 2px; transform: translateX(-50%); text-align: center; font-size: 10.5px; color: #9AA0A6; white-space: nowrap; line-height: 1.35; }
+.gm-tick b { display: block; font-size: 11px; font-weight: 700; color: #2C5F5D; }
+.gm-tick.first { transform: none; text-align: left; }
+.gm-tick.last { transform: none; text-align: right; }
+.gm-body { position: relative; }
+.gm-grid { position: absolute; top: 0; bottom: 0; left: 166px; right: 92px; pointer-events: none;
+  background-image: linear-gradient(to right, #E6E1D6 1px, transparent 1px); background-size: 25% 100%; }
+.gm-layer { display: flex; align-items: flex-end; height: 30px; margin-top: 14px; }
+.gm-layer-name { width: 166px; flex: 0 0 166px; }
+.gm-layer-title { flex: 1; font-size: 11.5px; font-weight: 700; padding-bottom: 4px; border-bottom: 1px solid #E5E1D8; }
+.gm-layer-title span { font-weight: 500; color: #9AA0A6; margin-left: 6px; }
+.gm-layer-role { width: 92px; flex: 0 0 92px; }
+.gm-row { display: flex; align-items: center; height: 34px; }
+.gm-name { width: 166px; flex: 0 0 166px; padding-right: 10px; display: flex; justify-content: flex-end; align-items: baseline; gap: 4px; }
+.gm-name .nm { font-size: 11.5px; color: #1F2937; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+.gm-name em { font-style: normal; color: #9AA0A6; font-size: 10px; flex: 0 0 auto; }
+.gm-plot { flex: 1; position: relative; height: 34px; }
+.gm-bar { position: absolute; top: 7px; height: 20px; border-radius: 4px; color: #fff; font-size: 10.5px;
+  line-height: 20px; padding: 0 6px; white-space: nowrap; overflow: hidden; }
+.gm-role { width: 92px; flex: 0 0 92px; padding-left: 10px; font-size: 10.5px; color: #9AA0A6; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.gm-bar.cur { background: #C8893A; }
+.gm-bar.alt { background: rgba(91,140,90,.10); border: 1.5px dashed #5B8C5A; color: #3F6B3E; line-height: 17px; }
+.gm-legend { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 14px; font-size: 11.5px; color: #4B5563; }
+.gm-legend i { display: inline-block; width: 11px; height: 11px; border-radius: 3px; margin-right: 5px; vertical-align: -1px; }
 </style>
 </head>
 <body>
@@ -753,43 +781,96 @@
 
   <div class="card">
     <h3>7.4 全套材料同尺度对比（蓝思 × CEFR 统一坐标）</h3>
-    <p>把方案中全部 9 套材料放入同一坐标系（横轴：CEFR 等级与蓝思值，纵轴：功能性分层），级别差异与角色分工一目了然。<b>蓝思值为行业通行估算，非官方精确值，标注「示意」。</b></p>
-    <div class="scale-map" style="background:#F9F8F4;border-radius:10px;padding:16px 14px;margin:12px 0;">
-      <!-- 顶部标尺 -->
-      <div class="scale-map-ruler" style="display:grid;grid-template-columns:repeat(5,1fr);text-align:center;font-size:12px;color:#6B7280;margin-bottom:2px;">
-        <div>A1<br><span style="color:#9AA0A6;font-size:11px;">300L</span></div>
-        <div>A1+<br><span style="color:#9AA0A6;font-size:11px;">450L</span></div>
-        <div>A2 入门<br><span style="color:#9AA0A6;font-size:11px;">600L</span></div>
-        <div>A2 标准<br><span style="color:#9AA0A6;font-size:11px;">750L</span></div>
-        <div>A2+ / B1<br><span style="color:#9AA0A6;font-size:11px;">900L</span></div>
-      </div>
-      <div class="scale-map-ruler" style="height:6px;border-radius:3px;background:linear-gradient(90deg,#9CC3C2,#2C5F5D);margin-bottom:14px;"></div>
+    <p>把方案涉及的 <b>10 套材料（9 套主用 + 1 套备选 Magic Tree House）</b>放进同一坐标系：横轴是 CEFR 与蓝思值，<b>每条横条的长度就是该材料的实际数值区间</b>。所以区间重叠的材料会在纵向上错开、横向上交叠——同难度带的材料立刻显形，不必再靠记忆去猜「谁比谁难」。蓝思值为行业通行估算，非官方精确值，全图标注「示意」。</p>
+<div class="gm">
+<div class="gm-inner">
 
-      <!-- 输入层 -->
-      <div style="font-size:12px;font-weight:600;color:#5B8C5A;margin-bottom:4px;">第一层 · 输入层（能力线·泛听）</div>
-      <div class="track" style="position:relative;height:52px;margin-bottom:12px;background:#fff;border-radius:8px;">
-        <div style="position:absolute;left:10%;width:16%;top:6px;height:40px;background:#5B8C5A;color:#fff;border-radius:6px;text-align:center;padding:4px 2px;font-size:12px;line-height:1.35;overflow:hidden;">RAZ G<br><span style="font-size:10px;opacity:.85;">300–450L</span></div>
-        <div style="position:absolute;left:27%;width:14%;top:6px;height:40px;background:#5B8C5A;color:#fff;border-radius:6px;text-align:center;padding:4px 2px;font-size:12px;line-height:1.35;overflow:hidden;">牛津树 L7<br><span style="font-size:10px;opacity:.85;">400–500L</span></div>
-        <div style="position:absolute;left:42%;width:14%;top:6px;height:40px;background:#5B8C5A;color:#fff;border-radius:6px;text-align:center;padding:4px 2px;font-size:12px;line-height:1.35;overflow:hidden;">牛津树 L8–9<br><span style="font-size:10px;opacity:.85;">500–620L</span></div>
-        <div style="position:absolute;left:57%;width:15%;top:6px;height:40px;background:#C8893A;color:#fff;border-radius:6px;text-align:center;padding:4px 2px;font-size:12px;line-height:1.35;overflow:hidden;">Judy Moody<br><span style="font-size:10px;opacity:.85;">500–600L</span></div>
-      </div>
-
-      <!-- 教材层 -->
-      <div style="font-size:12px;font-weight:600;color:#2C5F5D;margin-bottom:4px;">第二层 · 系统教材层（机构线）</div>
-      <div class="track" style="position:relative;height:52px;margin-bottom:12px;background:#fff;border-radius:8px;">
-        <div style="position:absolute;left:52%;width:18%;top:6px;height:40px;background:#2C5F5D;color:#fff;border-radius:6px;text-align:center;padding:4px 2px;font-size:12px;line-height:1.35;overflow:hidden;">Think 1<br><span style="font-size:10px;opacity:.85;">A2 · 约700L+</span></div>
-        <div style="position:absolute;left:76%;width:17%;top:6px;height:40px;background:#1E4543;color:#fff;border-radius:6px;text-align:center;padding:4px 2px;font-size:12px;line-height:1.35;overflow:hidden;">RE 1<br><span style="font-size:10px;opacity:.85;">A2+ · 700–850L</span></div>
-      </div>
-
-      <!-- 应试层 -->
-      <div style="font-size:12px;font-weight:600;color:#B5544A;margin-bottom:4px;">第三层 · 应试层（题型→模考）</div>
-      <div class="track" style="position:relative;height:52px;background:#fff;border-radius:8px;">
-        <div style="position:absolute;left:48%;width:16%;top:6px;height:40px;background:#D4943A;color:#fff;border-radius:6px;text-align:center;padding:4px 2px;font-size:12px;line-height:1.35;overflow:hidden;">Fun Skills 6<br><span style="font-size:10px;opacity:.85;">Flyers 约550–650L</span></div>
-        <div style="position:absolute;left:64%;width:16%;top:6px;height:40px;background:#B5544A;color:#fff;border-radius:6px;text-align:center;padding:4px 2px;font-size:12px;line-height:1.35;overflow:hidden;">KET Trainer<br><span style="font-size:10px;opacity:.85;">A2 · 约700L+</span></div>
-        <div style="position:absolute;left:80%;width:15%;top:6px;height:40px;background:#B5544A;color:#fff;border-radius:6px;text-align:center;padding:4px 2px;font-size:12px;line-height:1.35;overflow:hidden;">真题集 1<br><span style="font-size:10px;opacity:.85;">A2 官方难度</span></div>
-      </div>
-      <div style="font-size:12px;color:#6B7280;margin-top:8px;">▲ 图例：绿＝输入层（能力线）· 蓝＝教材层（机构线）· 橙/红＝应试层（题型→模考）· 金色＝当前在读。Magic Tree House（380–610L）与 Judy Moody 同级，为备选替代。蓝思值为估算「示意」。</div>
+  <div class="gm-head">
+    <div class="gm-layer-name"></div>
+    <div class="gm-axis">
+      <div class="gm-tick first" style="left:0;"><b>A1</b>300L</div>
+      <div class="gm-tick" style="left:25%;"><b>A1+</b>450L</div>
+      <div class="gm-tick" style="left:50%;"><b>A2 入门</b>600L</div>
+      <div class="gm-tick" style="left:75%;"><b>A2 标准</b>750L</div>
+      <div class="gm-tick last" style="left:100%;"><b>A2+ / B1</b>900L</div>
     </div>
+    <div class="gm-layer-role"></div>
+  </div>
+
+  <div class="gm-body">
+    <div class="gm-grid"></div>
+
+    <div class="gm-layer"><div class="gm-layer-name"></div><div class="gm-layer-title" style="color:#5B8C5A;">第一层 · 输入层<span>能力线 · 泛听磨耳朵</span></div><div class="gm-layer-role"></div></div>
+
+    <div class="gm-row">
+      <div class="gm-name"><span class="nm">RAZ G</span><em>A1</em></div>
+      <div class="gm-plot"><div class="gm-bar" style="left:0%;width:25%;background:#5B8C5A;">300–450L</div></div>
+      <div class="gm-role">已读完</div>
+    </div>
+    <div class="gm-row">
+      <div class="gm-name"><span class="nm">牛津树 L7</span><em>A1+</em></div>
+      <div class="gm-plot"><div class="gm-bar" style="left:16.67%;width:16.66%;background:#5B8C5A;">400–500L</div></div>
+      <div class="gm-role">已读完</div>
+    </div>
+    <div class="gm-row">
+      <div class="gm-name"><span class="nm">Magic Tree House</span><em>A1+→A2</em></div>
+      <div class="gm-plot"><div class="gm-bar alt" style="left:13.33%;width:38.34%;">380–610L</div></div>
+      <div class="gm-role">备选替换</div>
+    </div>
+    <div class="gm-row">
+      <div class="gm-name"><span class="nm">牛津树 L8–9</span><em>A2</em></div>
+      <div class="gm-plot"><div class="gm-bar" style="left:33.33%;width:20%;background:#5B8C5A;">500–620L</div></div>
+      <div class="gm-role">睡前保温</div>
+    </div>
+    <div class="gm-row">
+      <div class="gm-name"><span class="nm">Judy Moody &amp; Friends</span><em>A2</em></div>
+      <div class="gm-plot"><div class="gm-bar cur" style="left:33.33%;width:16.67%;">500–600L</div></div>
+      <div class="gm-role">在读 · 主泛听</div>
+    </div>
+
+    <div class="gm-layer"><div class="gm-layer-name"></div><div class="gm-layer-title" style="color:#2C5F5D;">第二层 · 教材层<span>机构线 · 考纲对齐</span></div><div class="gm-layer-role"></div></div>
+
+    <div class="gm-row">
+      <div class="gm-name"><span class="nm">Think 1</span><em>A2</em></div>
+      <div class="gm-plot"><div class="gm-bar" style="left:66.67%;width:16.66%;background:#2C5F5D;">700–800L</div></div>
+      <div class="gm-role">机构主线</div>
+    </div>
+    <div class="gm-row">
+      <div class="gm-name"><span class="nm">Reading Explorer 1</span><em>A2+</em></div>
+      <div class="gm-plot"><div class="gm-bar" style="left:66.67%;width:25%;background:#1E4543;">700–850L</div></div>
+      <div class="gm-role">精读辅助</div>
+    </div>
+
+    <div class="gm-layer"><div class="gm-layer-name"></div><div class="gm-layer-title" style="color:#B5544A;">第三层 · 应试层<span>题型 → 模考</span></div><div class="gm-layer-role"></div></div>
+
+    <div class="gm-row">
+      <div class="gm-name"><span class="nm">Fun Skills 6</span><em>Flyers</em></div>
+      <div class="gm-plot"><div class="gm-bar" style="left:41.67%;width:16.66%;background:#D4943A;">550–650L</div></div>
+      <div class="gm-role">阶段二主材</div>
+    </div>
+    <div class="gm-row">
+      <div class="gm-name"><span class="nm">KET Trainer</span><em>A2</em></div>
+      <div class="gm-plot"><div class="gm-bar" style="left:66.67%;width:16.66%;background:#B5544A;">700–800L</div></div>
+      <div class="gm-role">阶段三 A</div>
+    </div>
+    <div class="gm-row">
+      <div class="gm-name"><span class="nm">KET 真题集 1</span><em>A2</em></div>
+      <div class="gm-plot"><div class="gm-bar" style="left:66.67%;width:16.66%;background:#B5544A;">700–800L</div></div>
+      <div class="gm-role">阶段三 B</div>
+    </div>
+  </div>
+
+  <div class="gm-legend">
+    <span><i style="background:#5B8C5A;"></i>输入层</span>
+    <span><i style="background:#2C5F5D;"></i>教材层</span>
+    <span><i style="background:#D4943A;"></i>过渡材料</span>
+    <span><i style="background:#B5544A;"></i>冲刺材料</span>
+    <span><i style="background:#C8893A;"></i>当前在读</span>
+    <span><i style="background:rgba(91,140,90,.10);border:1.5px dashed #5B8C5A;"></i>备选替代</span>
+  </div>
+
+</div>
+</div>
   </div>
 
   <div class="card">
@@ -837,7 +918,7 @@
         </div>
       </div>
     </div>
-    <div class="note"><b>同尺度对比的关键结论：</b>① 难度上三层递进——输入层上限约 620L（牛津树高阶与初章书难度本就重叠，属正常现象），教材层与应试层集中在 700–850L，RE 1 是唯一覆盖 A2+ 的材料，负责拔高；② 功能上互补而非重复——同层材料二选一即可，跨层材料不可替代；③ 双线结构成立——Think 1 锚定 A2 是定位基准，泛读线滞后约 1 级不影响备考，反而负责保温兴趣。</div>
+    <div class="note"><b>同尺度对比的关键结论：</b>① 三层不是「一层比一层难」，而是「难度到位 + 功能分工」——输入层整体压在 300–620L，明显低一档；教材层与应试层几乎完全重叠在 700–850L（Think 1、KET Trainer、真题集 1 更是同为 700–800L），所以第三层的价值不在更难、而在与考试 1:1 对齐；RE 1 是唯一覆盖 A2+ 的材料，负责拔高；② 功能上互补而非重复——同层材料二选一即可，跨层材料不可替代（Judy Moody 与 Magic Tree House 同为 380–610L 一带，重口语选前者、重句式规整选后者）；③ 双线结构成立——Think 1 锚定 A2 是定位基准，泛读线滞后约 1 级不影响备考，反而负责保温兴趣。</div>
   </div>
 </section>
 
