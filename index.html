@@ -3,10 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>KET 听力进阶执行方案 · iPad 适配版</title>
+<title>KET 听力进阶全面执行方案 · A2 起点版</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%232C5F5D'/><text x='50' y='68' font-size='52' text-anchor='middle' fill='%23E8C57A' font-family='serif' font-weight='bold'>K</text></svg>">
 <style>
-  /* ========== 基础重置 ========== */
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
   body {
@@ -17,8 +16,6 @@
     font-size: 16px;
     -webkit-font-smoothing: antialiased;
   }
-
-  /* ========== 色彩变量 ========== */
   :root {
     --ink: #1F2937;
     --ink-soft: #4B5563;
@@ -29,22 +26,17 @@
     --brand: #2C5F5D;
     --brand-light: #E8F0EF;
     --gold: #C8893A;
-    --stage1: #5B8C5A;
-    --stage1-bg: #EDF3EC;
-    --stage2: #D4943A;
-    --stage2-bg: #FAF1E2;
-    --stage3: #B5544A;
-    --stage3-bg: #F8ECEA;
+    --gold-light: #FAF1E2;
+    --red: #B5544A;
+    --red-light: #F8ECEA;
   }
+  .container { max-width: 880px; margin: 0 auto; padding: 0 20px; }
 
-  /* ========== 布局容器 ========== */
-  .container { max-width: 860px; margin: 0 auto; padding: 0 24px; }
-
-  /* ========== Hero 封面 ========== */
+  /* ===== Hero ===== */
   .hero {
     background: linear-gradient(160deg, #2C5F5D 0%, #1E4543 100%);
     color: #fff;
-    padding: 72px 0 56px;
+    padding: 64px 0 52px;
     position: relative;
     overflow: hidden;
   }
@@ -61,341 +53,220 @@
     letter-spacing: 3px;
     text-transform: uppercase;
     color: rgba(255,255,255,0.7);
-    margin-bottom: 16px;
+    margin-bottom: 14px;
   }
   .hero h1 {
     font-family: "Noto Serif SC", "Songti SC", serif;
-    font-size: 38px;
+    font-size: 36px;
     font-weight: 700;
     line-height: 1.3;
-    margin-bottom: 16px;
+    margin-bottom: 14px;
     position: relative; z-index: 1;
   }
   .hero-sub {
-    font-size: 17px;
+    font-size: 16px;
     color: rgba(255,255,255,0.85);
-    max-width: 560px;
+    max-width: 620px;
     line-height: 1.8;
     position: relative; z-index: 1;
   }
   .hero-stats {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
-    margin-top: 40px;
+    gap: 12px;
+    margin-top: 36px;
     position: relative; z-index: 1;
   }
   .stat-card {
     background: rgba(255,255,255,0.1);
     border: 1px solid rgba(255,255,255,0.2);
     border-radius: 10px;
-    padding: 18px 20px;
+    padding: 16px 18px;
   }
-  .stat-num {
-    font-family: "Noto Serif SC", serif;
-    font-size: 26px;
-    font-weight: 700;
-    color: #E8C57A;
-    margin-bottom: 4px;
-  }
-  .stat-label { font-size: 13px; color: rgba(255,255,255,0.75); }
+  .stat-num { font-family: "Noto Serif SC", serif; font-size: 24px; font-weight: 700; color: #E8C57A; margin-bottom: 4px; }
+  .stat-label { font-size: 12px; color: rgba(255,255,255,0.75); }
 
-  /* ========== 目录导航 ========== */
+  /* ===== 目录 ===== */
   .toc {
     background: var(--card);
     border: 1px solid var(--line);
     border-radius: 12px;
-    padding: 24px 28px;
-    margin: -32px auto 40px;
+    padding: 22px 26px;
+    margin: -28px auto 36px;
     position: relative; z-index: 2;
     box-shadow: 0 4px 20px rgba(0,0,0,0.06);
   }
-  .toc-title {
-    font-size: 13px;
-    letter-spacing: 2px;
-    color: var(--ink-muted);
-    margin-bottom: 12px;
-  }
-  .toc-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px 20px;
-    list-style: none;
-  }
-  .toc-list a {
-    color: var(--brand);
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: 500;
-    border-bottom: 1px dashed transparent;
-    transition: border-color 0.2s;
-  }
+  .toc-title { font-size: 13px; letter-spacing: 2px; color: var(--ink-muted); margin-bottom: 10px; }
+  .toc-list { display: flex; flex-wrap: wrap; gap: 6px 18px; list-style: none; }
+  .toc-list a { color: var(--brand); text-decoration: none; font-size: 14px; font-weight: 500; border-bottom: 1px dashed transparent; transition: border-color 0.2s; }
   .toc-list a:hover { border-bottom-color: var(--brand); }
 
-  /* ========== 章节通用 ========== */
-  section { margin-bottom: 56px; }
+  /* ===== 章节 ===== */
+  section { margin-bottom: 52px; }
   .section-header {
     display: flex;
     align-items: baseline;
     gap: 12px;
-    margin-bottom: 24px;
+    margin-bottom: 20px;
     padding-bottom: 12px;
     border-bottom: 2px solid var(--ink);
   }
-  .section-num {
-    font-family: "Noto Serif SC", serif;
-    font-size: 14px;
-    color: var(--gold);
-    font-weight: 700;
-    letter-spacing: 1px;
-  }
-  .section-header h2 {
-    font-family: "Noto Serif SC", serif;
-    font-size: 26px;
-    font-weight: 700;
-    color: var(--ink);
-  }
-
-  h3 {
-    font-size: 18px;
-    font-weight: 600;
-    color: var(--ink);
-    margin: 28px 0 12px;
-  }
+  .section-num { font-family: "Noto Serif SC", serif; font-size: 14px; color: var(--gold); font-weight: 700; letter-spacing: 1px; white-space: nowrap; }
+  .section-header h2 { font-family: "Noto Serif SC", serif; font-size: 25px; font-weight: 700; color: var(--ink); }
+  h3 { font-size: 18px; font-weight: 600; color: var(--ink); margin: 26px 0 12px; }
+  h4 { font-size: 15px; font-weight: 600; color: var(--ink); margin: 18px 0 8px; }
   p { margin-bottom: 12px; color: var(--ink-soft); }
-  ul, ol { margin: 8px 0 16px 20px; color: var(--ink-soft); }
+  ul, ol { margin: 8px 0 16px 22px; color: var(--ink-soft); }
   li { margin-bottom: 6px; }
+  strong { color: var(--ink); }
 
-  /* ========== 卡片 ========== */
-  .card {
-    background: var(--card);
-    border: 1px solid var(--line);
-    border-radius: 10px;
-    padding: 24px 28px;
-    margin-bottom: 16px;
+  /* ===== 卡片 ===== */
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 22px 26px; margin-bottom: 14px; }
+  .note {
+    background: var(--gold-light);
+    border-left: 4px solid var(--gold);
+    border-radius: 0 8px 8px 0;
+    padding: 14px 18px;
+    margin: 14px 0;
+    font-size: 14px;
+    color: var(--ink-soft);
+    line-height: 1.7;
   }
+  .note b { color: var(--gold); }
 
-  /* ========== 阶段时间轴 ========== */
-  .timeline-overview {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
-    margin: 24px 0 32px;
-  }
-  .tl-item {
-    border-radius: 10px;
-    padding: 18px 16px;
-    text-align: center;
-  }
-  .tl-item.s1 { background: var(--stage1-bg); border-top: 3px solid var(--stage1); }
-  .tl-item.s2 { background: var(--stage2-bg); border-top: 3px solid var(--stage2); }
-  .tl-item.s3 { background: var(--stage3-bg); border-top: 3px solid var(--stage3); }
-  .tl-phase { font-size: 12px; color: var(--ink-muted); margin-bottom: 4px; }
-  .tl-name { font-weight: 700; font-size: 16px; margin-bottom: 4px; }
-  .tl-item.s1 .tl-name { color: var(--stage1); }
-  .tl-item.s2 .tl-name { color: var(--stage2); }
-  .tl-item.s3 .tl-name { color: var(--stage3); }
-  .tl-time { font-size: 12px; color: var(--ink-muted); }
-
-  /* ========== 阶段详情块 ========== */
-  .stage-block {
-    border-radius: 12px;
-    overflow: hidden;
-    margin-bottom: 32px;
-    border: 1px solid var(--line);
-    background: var(--card);
-  }
-  .stage-header {
-    padding: 20px 28px;
-    color: #fff;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-  .stage-block.s1 .stage-header { background: var(--stage1); }
-  .stage-block.s2 .stage-header { background: var(--stage2); }
-  .stage-block.s3 .stage-header { background: var(--stage3); }
-  .stage-header h3 {
-    color: #fff;
-    margin: 0;
-    font-size: 20px;
-    font-family: "Noto Serif SC", serif;
-  }
-  .stage-badge {
-    background: rgba(255,255,255,0.2);
-    padding: 4px 12px;
-    border-radius: 20px;
-    font-size: 12px;
-  }
-  .stage-body { padding: 24px 28px; }
-
-  .stage-sub-label {
-    font-size: 12px;
-    letter-spacing: 2px;
-    color: var(--ink-muted);
-    margin: 20px 0 8px;
+  /* ===== 定位徽章 ===== */
+  .badge-row { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0; }
+  .badge {
+    display: inline-block;
+    padding: 5px 12px;
+    border-radius: 16px;
+    font-size: 13px;
     font-weight: 600;
   }
+  .badge.dark { background: var(--brand); color: #fff; }
+  .badge.gold { background: var(--gold); color: #fff; }
+  .badge.line { background: #fff; border: 1px solid var(--brand); color: var(--brand); }
+  .badge.line-gold { background: #fff; border: 1px solid var(--gold); color: var(--gold); }
+  .badge.red { background: var(--red); color: #fff; }
+
+  /* ===== 表格 ===== */
+  table { width: 100%; border-collapse: collapse; margin: 12px 0 20px; font-size: 14px; table-layout: fixed; }
+  th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--line); vertical-align: top; word-break: break-word; }
+  th { background: #F5F3ED; font-weight: 600; color: var(--ink); font-size: 13px; }
+  td { color: var(--ink-soft); }
+  tr:last-child td { border-bottom: none; }
+
+  /* ===== 阶段块 ===== */
+  .stage-block { border-radius: 12px; overflow: hidden; margin-bottom: 28px; border: 1px solid var(--line); background: var(--card); }
+  .stage-header { padding: 18px 26px; color: #fff; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
+  .stage-block.s1 .stage-header { background: #5B8C5A; }
+  .stage-block.s2 .stage-header { background: #D4943A; }
+  .stage-block.s3 .stage-header { background: #B5544A; }
+  .stage-header h3 { color: #fff; margin: 0; font-size: 19px; font-family: "Noto Serif SC", serif; }
+  .stage-badge { background: rgba(255,255,255,0.22); padding: 4px 12px; border-radius: 20px; font-size: 12px; }
+  .stage-body { padding: 22px 26px; }
+  .stage-sub-label { font-size: 12px; letter-spacing: 2px; color: var(--ink-muted); margin: 22px 0 8px; font-weight: 600; }
   .stage-sub-label:first-child { margin-top: 0; }
 
-  /* ========== 表格 ========== */
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 12px 0 20px;
-    font-size: 14px;
-  }
-  th, td {
-    text-align: left;
-    padding: 10px 12px;
-    border-bottom: 1px solid var(--line);
-    vertical-align: top;
-  }
-  th {
-    background: #F5F3ED;
-    font-weight: 600;
-    color: var(--ink);
-    font-size: 13px;
-  }
-  td { color: var(--ink-soft); }
-
-  /* ========== 词汇量进度条 ========== */
-  .vocab-bar-wrap {
-    margin: 12px 0 20px;
-  }
-  .vocab-bar-label {
-    display: flex;
-    justify-content: space-between;
-    font-size: 13px;
-    margin-bottom: 6px;
-    color: var(--ink-soft);
-  }
-  .vocab-bar {
-    height: 10px;
-    background: #ECE9E0;
-    border-radius: 5px;
-    overflow: hidden;
-  }
-  .vocab-fill {
-    height: 100%;
-    border-radius: 5px;
-  }
-  .stage-block.s1 .vocab-fill { background: var(--stage1); width: 55%; }
-  .stage-block.s2 .vocab-fill { background: var(--stage2); width: 75%; }
-  .stage-block.s3 .vocab-fill { background: var(--stage3); width: 100%; }
-
-  /* ========== 流程步骤 ========== */
-  .flow-steps {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
-    margin: 12px 0 20px;
-  }
-  .flow-step {
-    background: #F9F8F4;
-    border-radius: 8px;
-    padding: 14px 16px;
-    border-left: 3px solid var(--brand);
-  }
-  .flow-step-num {
-    font-size: 12px;
-    color: var(--gold);
-    font-weight: 700;
-    margin-bottom: 4px;
-  }
+  /* ===== 流程步骤 ===== */
+  .flow-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 12px 0 20px; }
+  .flow-step { background: #F9F8F4; border-radius: 8px; padding: 14px 16px; border-left: 3px solid var(--brand); }
+  .flow-step-num { font-size: 12px; color: var(--gold); font-weight: 700; margin-bottom: 4px; }
   .flow-step-title { font-weight: 600; font-size: 14px; margin-bottom: 4px; color: var(--ink); }
   .flow-step-desc { font-size: 13px; color: var(--ink-muted); line-height: 1.6; }
 
-  /* ========== 验收标准 ========== */
-  .checkpoint {
-    display: flex;
-    gap: 16px;
-    padding: 16px 20px;
-    background: var(--card);
-    border: 1px solid var(--line);
-    border-radius: 10px;
-    margin-bottom: 12px;
-    align-items: flex-start;
-  }
-  .check-icon {
-    flex-shrink: 0;
-    width: 28px; height: 28px;
-    border-radius: 50%;
-    background: var(--brand-light);
-    color: var(--brand);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 700;
-    font-size: 14px;
-  }
+  /* ===== 词汇进度条 ===== */
+  .vocab-bar-wrap { margin: 12px 0 20px; }
+  .vocab-bar-label { display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 6px; color: var(--ink-soft); gap: 8px; }
+  .vocab-bar { height: 10px; background: #ECE9E0; border-radius: 5px; overflow: hidden; }
+  .vocab-fill { height: 100%; border-radius: 5px; }
+  .stage-block.s1 .vocab-fill { background: #5B8C5A; width: 45%; }
+  .stage-block.s2 .vocab-fill { background: #D4943A; width: 70%; }
+  .stage-block.s3 .vocab-fill { background: #B5544A; width: 100%; }
+
+  /* ===== 验收 checkpoint ===== */
+  .checkpoint { display: flex; gap: 16px; padding: 16px 20px; background: var(--card); border: 1px solid var(--line); border-radius: 10px; margin-bottom: 12px; align-items: flex-start; }
+  .check-icon { flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%; background: var(--brand-light); color: var(--brand); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; }
   .check-content h4 { font-size: 15px; margin-bottom: 4px; color: var(--ink); }
   .check-content p { font-size: 14px; margin: 0; color: var(--ink-muted); }
 
-  /* ========== 避坑指南 ========== */
-  .pitfall-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-  }
-  .pitfall {
-    background: #FDF6F5;
-    border-left: 3px solid var(--stage3);
-    border-radius: 0 8px 8px 0;
-    padding: 14px 16px;
-  }
-  .pitfall-title { font-weight: 600; font-size: 14px; color: var(--stage3); margin-bottom: 4px; }
-  .pitfall-desc { font-size: 13px; color: var(--ink-muted); line-height: 1.6; }
-
-  .principle-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-  }
-  .principle {
-    background: var(--brand-light);
-    border-radius: 8px;
-    padding: 14px 16px;
-  }
+  /* ===== 原则与避坑 ===== */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .principle { background: var(--brand-light); border-radius: 8px; padding: 14px 16px; }
   .principle-title { font-weight: 600; font-size: 14px; color: var(--brand); margin-bottom: 4px; }
   .principle-desc { font-size: 13px; color: var(--ink-soft); line-height: 1.6; }
+  .pitfall { background: var(--red-light); border-left: 3px solid var(--red); border-radius: 0 8px 8px 0; padding: 14px 16px; }
+  .pitfall-title { font-weight: 600; font-size: 14px; color: var(--red); margin-bottom: 4px; }
+  .pitfall-desc { font-size: 13px; color: var(--ink-muted); line-height: 1.6; }
 
-  /* ========== 底部总结 ========== */
-  .summary {
-    background: var(--brand);
-    color: #fff;
-    border-radius: 12px;
-    padding: 32px 36px;
-    margin-top: 40px;
-  }
+  /* ===== FAQ ===== */
+  details.faq { background: var(--card); border: 1px solid var(--line); border-radius: 10px; margin-bottom: 10px; padding: 4px 0; }
+  details.faq summary { padding: 14px 20px; font-weight: 600; font-size: 15px; color: var(--ink); cursor: pointer; list-style: none; position: relative; padding-right: 40px; }
+  details.faq summary::after { content: "+"; position: absolute; right: 18px; top: 50%; transform: translateY(-50%); font-size: 20px; color: var(--gold); font-weight: 700; }
+  details.faq[open] summary::after { content: "–"; }
+  details.faq .faq-body { padding: 0 20px 16px; font-size: 14px; color: var(--ink-soft); line-height: 1.8; }
+
+  /* ===== 周计划表 ===== */
+  .week-table td:first-child { font-weight: 600; color: var(--ink); white-space: nowrap; }
+
+  /* ===== 总结 ===== */
+  .summary { background: var(--brand); color: #fff; border-radius: 12px; padding: 28px 32px; margin-top: 36px; }
   .summary h3 { color: #fff; margin-top: 0; }
   .summary p { color: rgba(255,255,255,0.85); }
   .summary strong { color: #E8C57A; }
+  .footer { text-align: center; padding: 28px 0; font-size: 12px; color: var(--ink-muted); }
 
-  .footer {
-    text-align: center;
-    padding: 32px 0;
-    font-size: 12px;
-    color: var(--ink-muted);
-  }
-
-  /* ========== 响应式 ========== */
+  /* ===== 响应式 ===== */
   @media (max-width: 640px) {
-    .hero { padding: 48px 0 40px; }
-    .hero h1 { font-size: 28px; }
+    .hero { padding: 44px 0 38px; }
+    .hero h1 { font-size: 26px; }
     .hero-stats { grid-template-columns: 1fr; }
-    .timeline-overview { grid-template-columns: 1fr; }
     .flow-steps { grid-template-columns: 1fr; }
-    .pitfall-grid, .principle-grid { grid-template-columns: 1fr; }
-    .container { padding: 0 16px; }
-    .stage-body, .stage-header { padding: 18px 16px; }
+    .grid-2 { grid-template-columns: 1fr; }
+    .container { padding: 0 14px; }
+    .stage-body, .stage-header { padding: 16px; }
+    .card { padding: 16px 16px; }
     table { font-size: 13px; }
     th, td { padding: 8px; }
+    .section-header h2 { font-size: 21px; }
+
+    /* 宽表卡片化：表头隐藏，每行转为字段卡片 */
+    table.card-table { display: block; }
+    table.card-table thead { display: none; }
+    table.card-table tbody { display: block; }
+    table.card-table tr:first-child { display: none; }
+    table.card-table tr {
+      display: block;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      margin-bottom: 10px;
+      padding: 4px 12px;
+      background: #fff;
+    }
+    table.card-table td {
+      display: block;
+      border: none;
+      padding: 6px 2px;
+      line-height: 1.6;
+    }
+    table.card-table td::before {
+      content: attr(data-label);
+      display: block;
+      font-weight: 700;
+      color: var(--brand);
+      font-size: 12px;
+      margin-bottom: 2px;
+      letter-spacing: 1px;
+    }
+    table.card-table tr:first-child td { padding-top: 0; }
+    /* 同尺度对比图谱：窄屏可横向滑动，保持比例可读 */
+    .scale-map { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .scale-map .track, .scale-map-ruler { min-width: 460px; }
+    /* 功能分层卡：窄屏堆叠单列 */
+    .layer-grid { grid-template-columns: 1fr !important; }
   }
 
-  /* ========== 打印优化 ========== */
+  /* ===== 打印 ===== */
   @media print {
     body { background: #fff; font-size: 12pt; }
     .hero { background: #2C5F5D !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
@@ -407,24 +278,24 @@
 </head>
 <body>
 
-<!-- ===== HERO 封面 ===== -->
+<!-- ===== HERO ===== -->
 <header class="hero">
   <div class="container">
-    <div class="hero-label">KET Listening · Study Plan</div>
-    <h1>小学低龄段 KET 听力<br>进阶执行方案</h1>
-    <p class="hero-sub">适配 iPad 学习终端，为牛津树 8–9 级 / RAZ G 级水平的二三年级学生设计，遵循「可理解输入、平滑进阶、低执行门槛」原则。</p>
+    <div class="hero-label">KET Listening · Comprehensive Plan · A2</div>
+    <h1>KET 听力进阶<br>全面执行方案</h1>
+    <p class="hero-sub">面向已进入 CEFR A2（KET 备考轨道）的低龄学生：当前在读剑桥 Think 1 与 Reading Explorer 1，家庭泛读已进入初章书（Judy Moody and Friends）。方案内核：<strong>9 套材料按「三层功能结构」整合，映射至三阶段执行</strong>；以改造后的 iPad 为核心听力终端，能力与应试双线并行。</p>
     <div class="hero-stats">
       <div class="stat-card">
-        <div class="stat-num">A1+ → A2</div>
-        <div class="stat-label">当前水平 → KET 目标</div>
+        <div class="stat-num">A2 起点</div>
+        <div class="stat-label">综合水平 · KET 备考轨道</div>
       </div>
       <div class="stat-card">
-        <div class="stat-num">3 阶段</div>
-        <div class="stat-label">基础 → 过渡 → 冲刺</div>
+        <div class="stat-num">5 部分 · 25 题</div>
+        <div class="stat-label">KET 听力考试结构</div>
       </div>
       <div class="stat-card">
-        <div class="stat-num">15–25 分钟</div>
-        <div class="stat-label">每日固定听力时长</div>
+        <div class="stat-num">5–7 个月</div>
+        <div class="stat-label">三阶段备考窗口</div>
       </div>
     </div>
   </div>
@@ -435,395 +306,775 @@
   <nav class="toc">
     <div class="toc-title">目 录</div>
     <ul class="toc-list">
-      <li><a href="#prep">一、iPad 学习环境搭建</a></li>
-      <li><a href="#roadmap">二、三阶段进阶总览</a></li>
-      <li><a href="#stage1">三、基础打底期</a></li>
-      <li><a href="#stage2">四、题型过渡期</a></li>
-      <li><a href="#stage3">五、冲刺精听期</a></li>
-      <li><a href="#checkpoint">六、阶段验收标准</a></li>
-      <li><a href="#principles">七、执行原则与避坑</a></li>
+      <li><a href="#s0">00 · 孩子现状与水平定位</a></li>
+      <li><a href="#s1">01 · KET 听力考试结构</a></li>
+      <li><a href="#s2">02 · 总体策略与时间预算</a></li>
+      <li><a href="#s3">03 · iPad 学习环境搭建</a></li>
+      <li><a href="#s4">04 · 阶段一：听力激活期</a></li>
+      <li><a href="#s5">05 · 阶段二：题型过渡期</a></li>
+      <li><a href="#s6">06 · 阶段三：冲刺模考期</a></li>
+      <li><a href="#s7">07 · 资料全景清单与同尺度对比</a></li>
+      <li><a href="#s8">08 · 听力训练方法论</a></li>
+      <li><a href="#s9">09 · 每日 / 每周执行模板</a></li>
+      <li><a href="#s10">10 · 进度跟踪与验收</a></li>
+      <li><a href="#s11">11 · 常见问题与避坑</a></li>
     </ul>
   </nav>
 </div>
 
 <main class="container">
 
-<!-- ===== 第一章：前置准备 ===== -->
-<section id="prep">
+<!-- ===== 方案架构总览：三层功能结构 × 三阶段执行 ===== -->
+<div class="card" style="margin-bottom:28px;">
+  <h3>方案架构总览：三层功能结构 × 三阶段执行</h3>
+  <p style="margin-top:0;">整套方案的内核是一条主线：<strong>把 9 套材料按功能分成三层，再映射到三个备考阶段</strong>——每一阶段用哪一层材料、达到什么效果，见下表；材料级别的同尺度对比详见 PART 07（7.4–7.6）。</p>
+  <table class="card-table">
+    <tr><th style="width:22%">材料层</th><th style="width:26%">阶段一 · 激活（1–2 月）</th><th style="width:26%">阶段二 · 过渡（2–3 月）</th><th style="width:26%">阶段三 · 冲刺（1.5–2 月）</th></tr>
+    <tr>
+      <td data-label="材料层"><strong>第一层 · 输入层</strong><br>听得懂 · 能力底盘</td>
+      <td data-label="阶段一 · 激活（1–2 月）">初章书有声书泛听（主）</td>
+      <td data-label="阶段二 · 过渡（2–3 月）">初章书泛听保温 10 分钟</td>
+      <td data-label="阶段三 · 冲刺（1.5–2 月）">初章书保温 10 分钟</td>
+    </tr>
+    <tr>
+      <td data-label="材料层"><strong>第二层 · 教材层</strong><br>跟得上 · 考纲对齐</td>
+      <td data-label="阶段一 · 激活（1–2 月）">Think 1 听力跟学（主）</td>
+      <td data-label="阶段二 · 过渡（2–3 月）">Think 1 板块 + RE 1 泛听</td>
+      <td data-label="阶段三 · 冲刺（1.5–2 月）">机构课照常，不再加量</td>
+    </tr>
+    <tr>
+      <td data-label="材料层"><strong>第三层 · 应试层</strong><br>做得出 · 题型模考</td>
+      <td data-label="阶段一 · 激活（1–2 月）">暂不接触，保护信心</td>
+      <td data-label="阶段二 · 过渡（2–3 月）">Fun Skills 6 题型过渡（主）</td>
+      <td data-label="阶段三 · 冲刺（1.5–2 月）">KET Trainer → 真题模考（主）</td>
+    </tr>
+  </table>
+  <div class="note"><b>三层一句话：</b>输入层负责「听得懂」（能力底盘），教材层负责「跟得上」（考纲对齐），应试层负责「做得出」（题型与模考）。三个阶段从「激活输入」走向「对接考试」，层层递进、材料互不重复。</div>
+</div>
+
+<!-- ===== 00 孩子现状与水平定位 ===== -->
+<section id="s0">
+  <div class="section-header">
+    <span class="section-num">PART 00</span>
+    <h2>孩子现状与水平定位</h2>
+  </div>
+
+  <div class="card">
+    <h3>双线学习结构</h3>
+    <table class="card-table">
+      <tr><th style="width:18%">学习线</th><th style="width:22%">当前进度</th><th style="width:60%">定位说明</th></tr>
+      <tr>
+        <td data-label="学习线"><strong>家庭泛读线</strong></td>
+        <td data-label="当前进度">牛津树 L7（已完成）<br>RAZ G（已完成）<br>Judy Moody and Friends（在读中）</td>
+        <td data-label="定位说明">已走出分级读物、进入初章书（蓝思约 500–600L），承担词汇保温、兴趣维持、可理解输入的角色</td>
+      </tr>
+      <tr>
+        <td data-label="学习线"><strong>机构教学线</strong></td>
+        <td data-label="当前进度">剑桥 Think 1（在读中）<br>Reading Explorer 1（在读中）</td>
+        <td data-label="定位说明">Think 1 是剑桥出版的 A2 级综合教材（含 KET 题型训练），Reading Explorer 1 由 Cengage/国家地理出版、对应 A2–B1 阅读强化（文本蓝思约 700+），这两套是水平定位的真正锚点</td>
+      </tr>
+    </table>
+    <div class="badge-row">
+      <span class="badge dark">综合定位：CEFR A2</span>
+      <span class="badge gold">KET 备考轨道已启动</span>
+      <span class="badge line">家庭线 A1 高阶 → A2 入门</span>
+      <span class="badge line-gold">泛读线滞后教学线约 1 级（健康）</span>
+    </div>
+    <div class="note"><b>按方案三层功能结构归位：</b>家庭泛读线所用材料（牛津树 / RAZ / Judy Moody）属<b>第一层 · 输入层</b>；机构教学线（Think 1 / RE 1）属<b>第二层 · 教材层</b>；孩子接下来的 KET 听力冲刺，将由<b>第三层 · 应试层</b>（Fun Skills 6 → KET Trainer → 真题）完成。两条线分别落在相邻层级、相差约 1 级，是健康的结构。</div>
+  </div>
+
+  <div class="card">
+    <h3>三条关键判断</h3>
+    <ol>
+      <li><strong>以教材锚定水平，而非泛读读物</strong>：Think 1（A2 官方教材）说明机构已把孩子的教学进度定在 KET 备考线，这比家庭阅读体现的水平更可靠、更具参考性。</li>
+      <li><strong>两条线相差约 1 级属正常且健康</strong>：教学线负责拔高能力，泛读线负责保温兴趣；家庭阅读不必强行追上教材难度，能自主读、愿意读就是成功。</li>
+      <li><strong>听力需要单独评估</strong>：国内孩子普遍「读强听弱」，阅读达到 A2 不代表听力达到 A2。本方案的听力素材整体按「A2 起点」配置，但开跑前建议用一套 KET 真题听力先摸底，确定孩子听力的真实起点（见 PART 10 摸底方法）。</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ===== 01 KET 听力考试结构 ===== -->
+<section id="s1">
   <div class="section-header">
     <span class="section-num">PART 01</span>
+    <h2>KET 听力考试结构</h2>
+  </div>
+
+  <div class="card">
+    <p>KET（A2 Key for Schools，剑桥通用英语第一级校园版）听力部分共 <strong>5 个部分、25 题</strong>，时长约 <strong>30 分钟</strong>（含 6 分钟誊写答案时间），占总分 25%。语速中等偏慢、发音清晰，以英音为主，也可能出现美音、澳音等其他口音；<strong>每段录音连续播放两遍</strong>——「第二遍补救」是 KET 听力重要的得分空间，也是本方案「第一遍抓大意、第二遍补细节」训练思路的依据。</p>
+    <table class="card-table">
+      <tr><th style="width:10%">部分</th><th style="width:14%">题量</th><th style="width:30%">题型内容</th><th style="width:46%">考查重点</th></tr>
+      <tr><td data-label="部分">Part 1</td><td data-label="题量">5 题</td><td data-label="题型内容">五段短对话（每段 1–2 人），每段配三幅图，三选一</td><td data-label="考查重点">听懂价格、时间、日期、地点、外形等细节，排除干扰图</td></tr>
+      <tr><td data-label="部分">Part 2</td><td data-label="题量">5 题</td><td data-label="题型内容">一段独白，完成一页笔记中的 5 处填空（单词 / 数字 / 日期 / 时间）</td><td data-label="考查重点">边听边写，拼写与速记必须准确</td></tr>
+      <tr><td data-label="部分">Part 3</td><td data-label="题量">5 题</td><td data-label="题型内容">一段长对话，5 道三选一选择题</td><td data-label="考查重点">从对话中定位关键信息（地点、原因、决定等）</td></tr>
+      <tr><td data-label="部分">Part 4</td><td data-label="题量">5 题</td><td data-label="题型内容">五段短独白或短对话，各 1 道三选一</td><td data-label="考查重点">抓主旨、话题、要点与说话人意图</td></tr>
+      <tr><td data-label="部分">Part 5</td><td data-label="题量">5 题</td><td data-label="题型内容">一段长对话，把两组信息配对（如「人名—活动」）</td><td data-label="考查重点">简单事实信息的归属与对应</td></tr>
+    </table>
+    <div class="note">
+      <b>对备考的启示：</b>KET 听力的主体是「生活化对话 + 实用信息提取」——时间、价格、日期、姓名拼写、地点、人物关系是最高频考点；另有 Part 2 的听写、Part 5 的配对两种「动手型」任务。因此日常训练既要有「听懂对话、抓取信息」的输入，也要专门练「边听边写」的速记，两者缺一不可。
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>高频考点与话题清单</h3>
+    <div class="badge-row">
+      <span class="badge dark">校园与课程</span>
+      <span class="badge dark">购物与价格</span>
+      <span class="badge dark">出行与交通</span>
+      <span class="badge dark">家庭与朋友</span>
+      <span class="badge dark">食物与餐饮</span>
+      <span class="badge dark">兴趣与运动</span>
+      <span class="badge dark">天气与日期</span>
+      <span class="badge dark">问路与方位</span>
+    </div>
+    <ul>
+      <li><strong>必会数字类</strong>：价格（£4.50）、时间（half past three）、日期与星期、电话号码与车牌、年龄与人数。</li>
+      <li><strong>必会拼写类</strong>：人名、地名、课程名、物品名的字母拼写（Part 2 独白填空的最高频失分点）。</li>
+      <li><strong>必会表达类</strong>：建议与拒绝、同意与反对、比较与选择、原因与结果（Part 3 / Part 4 选择题的核心判断依据）。</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ===== 02 总体策略与时间预算 ===== -->
+<section id="s2">
+  <div class="section-header">
+    <span class="section-num">PART 02</span>
+    <h2>总体策略与时间预算</h2>
+  </div>
+
+  <div class="card">
+    <h3>双线并行策略</h3>
+    <table class="card-table">
+      <tr><th style="width:16%">线路</th><th style="width:26%">承担任务</th><th style="width:58%">具体做法</th></tr>
+      <tr>
+        <td data-label="线路"><strong>能力线</strong><br>（每天 10–15 分钟）</td>
+        <td data-label="承担任务">真正提升听力理解力</td>
+        <td data-label="具体做法">初章书有声书泛听、教材听力板块跟学、可理解输入积累——目标是「听懂」，不盯正确率</td>
+      </tr>
+      <tr>
+        <td data-label="线路"><strong>应试线</strong><br>（每天 5–10 分钟）</td>
+        <td data-label="承担任务">熟悉题型、训练抓取考点</td>
+        <td data-label="具体做法">Fun Skills → KET Trainer → 真题的分级题型训练——目标是「会做题」，盯正确率</td>
+      </tr>
+    </table>
+    <div class="note">
+      <b>为什么必须双线：</b>只磨耳朵不做题，会出现「听得懂故事、做不对题」（听懂了但抓不住考点）；只刷题不磨耳朵，会出现「题做得熟、真实对话听不懂」（能力没跟上）。两条线缺一不可。
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>时间预算（低龄友好）</h3>
+    <ul>
+      <li><strong>每日总量：20–25 分钟</strong>，分 1–2 段完成（如饭后 15 分钟 + 睡前 10 分钟），符合二三年级 15–20 分钟的有效注意力上限。</li>
+      <li><strong>每周 6 天</strong>，留 1 天完全休息，避免疲劳化、保护兴趣。</li>
+      <li><strong>周五/周六可加 1 次「整段听力」</strong>（20–25 分钟连续听），逐步拉长专注时长，向考试节奏靠拢。</li>
+      <li>总量不建议超过 30 分钟/天：超出后边际效益递减，且容易让孩子把听力与「负担」绑定。</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ===== 03 iPad 学习环境搭建 ===== -->
+<section id="s3">
+  <div class="section-header">
+    <span class="section-num">PART 03</span>
     <h2>iPad 学习环境搭建</h2>
   </div>
 
   <div class="card">
-    <h3>1. 极简防干扰设置（5 分钟完成）</h3>
+    <h3>3.1 应用精简与防干扰（5 分钟完成）</h3>
     <ul>
-      <li><strong>应用精简</strong>：卸载游戏、短视频、社交类 APP，仅保留「百度网盘 HD」+ 一个本地复读播放器（推荐 OPlayer / 点滴复读机，支持逐句复读、AB 循环、0.5–1.5 倍变速）。</li>
-      <li><strong>系统管控</strong>：开启「设置 → 屏幕使用时间 → 内容和隐私访问限制」，禁止安装/删除 APP，关闭非学习类通知；开启「引导式访问」锁定当前 APP。</li>
-      <li><strong>桌面整理</strong>：两个学习 APP 放在同一文件夹，命名为「英语听力」。</li>
+      <li><strong>卸载</strong>：游戏、短视频、社交类 APP 全部卸载，仅保留学习类工具。</li>
+      <li><strong>保留清单</strong>：
+        <ul>
+          <li>百度网盘 HD —— 音频云端管理、批量下载（正版音频上传后离线播放）；</li>
+          <li>OPlayer 或点滴复读机 —— 本地精听播放器，支持逐句复读、AB 循环、0.5–1.5 倍变速、书签；</li>
+          <li>喜马拉雅儿童（可选）—— 正版有声书/教材音频在线收听，家长端可管控。</li>
+        </ul>
+      </li>
+      <li><strong>系统管控</strong>：设置 → 屏幕使用时间 → 内容和隐私访问限制：禁止安装/删除 APP、关闭非学习类通知；开启「引导式访问」锁定当前听力 APP，孩子无法切换应用。</li>
+      <li><strong>桌面整理</strong>：学习 APP 收进同一文件夹，命名为「英语听力」，减少寻找成本。</li>
     </ul>
   </div>
 
   <div class="card">
-    <h3>2. 音频导入与分类规范</h3>
-    <p><strong>推荐导入方式：网盘导入法</strong>。将正版音频统一上传至百度网盘，iPad 端登录后按文件夹批量下载至本地，全程无需电脑。</p>
-    <p>文件夹按「阶段序号-阶段名称-资料名」层级命名，孩子可自主定位：</p>
+    <h3>3.2 音频导入与文件夹规范</h3>
+    <p><strong>推荐网盘导入法</strong>：电脑/手机把正版音频传至百度网盘 → iPad 端登录同账号 → 按文件夹批量下载至本地。全程无需数据线。</p>
+    <p>文件夹统一按「阶段序号-资料名-子项」命名，孩子可自主定位：</p>
     <table>
-      <tr><th style="width:30%">文件夹路径</th><th>说明</th></tr>
-      <tr><td>01 基础期-牛津树 8 级</td><td>已读分级材料，裸听磨耳朵</td></tr>
-      <tr><td>01 基础期-牛津树 9 级</td><td>章节式故事，提升听力耐力</td></tr>
-      <tr><td>01 基础期-RAZ G 级</td><td>故事+科普，词汇面广</td></tr>
-      <tr><td>02 过渡期-Fun Skills 6 级</td><td>Flyers 题型过渡</td></tr>
-      <tr><td>03 冲刺期-KET Trainer 校园版</td><td>题型方法讲解 + 模拟题</td></tr>
-      <tr><td>03 冲刺期-KET 官方真题集 校园版 1</td><td>全真精听与模考</td></tr>
+      <tr><th style="width:34%">文件夹路径</th><th style="width:66%">内容与用途</th></tr>
+      <tr><td>01 激活-初章书有声书</td><td>Judy Moody、Magic Tree House 等，泛听磨耳朵</td></tr>
+      <tr><td>01 激活-牛津树L8-L9音频</td><td>泛读线衔接，睡前裸听</td></tr>
+      <tr><td>02 过渡-Fun Skills 6</td><td>Flyers 题型过渡训练</td></tr>
+      <tr><td>02 过渡-教材听力（Think 1）</td><td>机构教材配套听力，跟学复习</td></tr>
+      <tr><td>03 冲刺-KET Trainer 校园版</td><td>题型方法讲解 + 模拟题</td></tr>
+      <tr><td>03 冲刺-KET 真题集 校园版1</td><td>全真精听与模考</td></tr>
+      <tr><td>99 错题与生词录音</td><td>孩子自己录的错题句、生词跟读（家长辅助）</td></tr>
     </table>
+    <div class="note"><b>提示：</b>所有音频使用正版配套资源。扫码在线的音频可在 APP 内缓存下载；CD 版可用电脑翻录为 MP3 再导入（见 PART 08 附录）。</div>
   </div>
 </section>
 
-<!-- ===== 第二章：三阶段总览 ===== -->
-<section id="roadmap">
+<!-- ===== 04 阶段一：听力激活期 ===== -->
+<section id="s4">
   <div class="section-header">
-    <span class="section-num">PART 02</span>
-    <h2>三阶段进阶路线总览</h2>
-  </div>
-  <p>从孩子现有水平（CEFR A1+）平滑过渡到 KET（CEFR A2），严格遵循「少而精、可落地」原则，剔除所有冗余重复的资料。</p>
-
-  <div class="timeline-overview">
-    <div class="tl-item s1">
-      <div class="tl-phase">阶段一</div>
-      <div class="tl-name">基础打底期</div>
-      <div class="tl-time">考前 6 个月以上</div>
-    </div>
-    <div class="tl-item s2">
-      <div class="tl-phase">阶段二</div>
-      <div class="tl-name">题型过渡期</div>
-      <div class="tl-time">考前 3–6 个月</div>
-    </div>
-    <div class="tl-item s3">
-      <div class="tl-phase">阶段三</div>
-      <div class="tl-name">冲刺精听期</div>
-      <div class="tl-time">考前 2–3 个月</div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== 第三章：阶段一 ===== -->
-<section id="stage1">
-  <div class="section-header">
-    <span class="section-num">PART 03</span>
-    <h2>基础打底期</h2>
+    <span class="section-num">PART 04</span>
+    <h2>阶段一：听力激活期</h2>
   </div>
 
   <div class="stage-block s1">
     <div class="stage-header">
-      <h3>把「阅读词汇」转化为「听力词汇」</h3>
-      <span class="stage-badge">CEFR A1+ · 不少于 3 个月</span>
+      <h3>把「阅读优势」转化为「听力优势」</h3>
+      <span class="stage-badge">1–2 个月 · 每天 15–20 分钟</span>
     </div>
     <div class="stage-body">
 
-      <div class="stage-sub-label">学习进程</div>
-      <ul>
-        <li><strong>频次</strong>：每周 5 天，每天固定 15 分钟，建议饭后或睡前。</li>
-      </ul>
+      <div class="stage-sub-label" style="color:#5B8C5A;">对应材料层：第一层 · 输入层（主）+ 第二层 · 教材层（辅）</div>
+      <div class="stage-sub-label">阶段定位</div>
+      <p>孩子的阅读已到 A2 门槛，但听力辨音、连读弱读的敏感度大概率滞后。本阶段不做题，只做两件事：<strong>大量可理解的初章书泛听</strong> + <strong>教材听力板块的跟学</strong>，把「认识的词」全部变成「听得出的词」。</p>
+
+      <div class="stage-sub-label">核心资料与每日流程</div>
       <div class="flow-steps">
         <div class="flow-step">
-          <div class="flow-step-num">STEP 1 · 3 分钟</div>
-          <div class="flow-step-title">跟读复习</div>
-          <div class="flow-step-desc">播放前一天听过的内容，逐句跟读，匹配原声语速与发音。</div>
+          <div class="flow-step-num">环节 1 · 10 分钟</div>
+          <div class="flow-step-title">初章书有声书泛听</div>
+          <div class="flow-step-desc">Judy Moody / Magic Tree House，先看书听 1 遍 → 合书裸听 1 遍，听懂大意即可，不暂停不查词</div>
         </div>
         <div class="flow-step">
-          <div class="flow-step-num">STEP 2 · 9 分钟</div>
-          <div class="flow-step-title">新内容输入</div>
-          <div class="flow-step-desc">看书听 1 遍 → 合书裸听 1 遍 → 挑 2–3 个长句跟读。</div>
+          <div class="flow-step-num">环节 2 · 5–8 分钟</div>
+          <div class="flow-step-title">教材听力跟学</div>
+          <div class="flow-step-desc">Think 1 课本配套音频，把机构课上过的单元听力重听 1–2 遍，逐句能跟读即可</div>
         </div>
         <div class="flow-step">
-          <div class="flow-step-num">STEP 3 · 3 分钟</div>
-          <div class="flow-step-title">复盘巩固</div>
-          <div class="flow-step-desc">标记听辨反应慢的单词，大声跟读 3 遍，强化音形对应。</div>
+          <div class="flow-step-num">环节 3 · 2 分钟</div>
+          <div class="flow-step-title">睡前裸听</div>
+          <div class="flow-step-desc">牛津树 L8/L9 音频或当日听过的章节，闭眼盲听，培养语音流（可并入睡前程序）</div>
         </div>
       </div>
 
-      <div class="stage-sub-label">配套资料</div>
-      <table>
-        <tr>
-          <th style="width:22%">资料名称</th>
-          <th style="width:18%">内容体量</th>
-          <th>主题覆盖</th>
-          <th style="width:15%">单篇时长</th>
-        </tr>
-        <tr>
-          <td>牛津阅读树 8 级</td>
-          <td>约 12 册</td>
-          <td>家庭冒险、校园生活、历史科普、奇幻小故事，对话占比增加。</td>
-          <td>每册 3–5 分钟</td>
-        </tr>
-        <tr>
-          <td>牛津阅读树 9 级</td>
-          <td>约 12 册</td>
-          <td>章节式长篇冒险，加入人文、自然科学元素，信息密度提升。</td>
-          <td>每册 4–6 分钟</td>
-        </tr>
-        <tr>
-          <td>RAZ G 级</td>
-          <td>约 70 本<br>故事/科普各半</td>
-          <td>日常生活、自然动植物、社会常识、基础科普，句式规整。</td>
-          <td>每本 1–2 分钟</td>
-        </tr>
-      </table>
-
-      <div class="stage-sub-label">词汇量目标</div>
+      <div class="stage-sub-label">词汇目标</div>
       <div class="vocab-bar-wrap">
         <div class="vocab-bar-label">
-          <span>阶段听力词汇目标：1,500 – 1,800 个</span>
-          <span>与 KET 考纲重合度 ≈ 65%</span>
+          <span>激活听力词汇：向 2,000 词靠拢（从阅读词汇迁移）</span>
+          <span>目标：认识的词 90% 能听出</span>
         </div>
         <div class="vocab-bar"><div class="vocab-fill"></div></div>
       </div>
+      <p style="font-size:12.5px;color:var(--muted,#6b7280);margin:6px 0 0;">说明：KET 官方词汇表约 1,500 词，此处 2,000 / 2,200 的口径包含派生词、短语与场景扩展词，属「听力词汇总量」目标，不等于要求孩子额外背 700 个新词。</p>
 
-      <div class="stage-sub-label">阶段目标</div>
+      <div class="stage-sub-label">本阶段验收</div>
       <ul>
-        <li>完成「认读词汇 → 听觉快速识别」的转化，解决「看着认识、听着反应慢」。</li>
-        <li>熟悉英语连读、弱读、重音规律，打磨基础辨音能力。</li>
-        <li>适应母语者正常语速，建立裸听信心，积累听力耐力。</li>
-        <li>用熟悉的文本降低门槛，避免挫败感，保持学习兴趣。</li>
+        <li>裸听 Judy Moody 一章节，能复述 3 个以上关键情节（中文/英文皆可）；</li>
+        <li>Think 1 单元听力重听时，能跟上语速并完成课本配套听力练习（正确率 ≥ 70%）；</li>
+        <li>对连读、弱读不再「听不出单词边界」，能区分 heard / hard 这类近音词（家长可抽查）。</li>
       </ul>
     </div>
   </div>
 </section>
 
-<!-- ===== 第四章：阶段二 ===== -->
-<section id="stage2">
+<!-- ===== 05 阶段二：题型过渡期 ===== -->
+<section id="s5">
   <div class="section-header">
-    <span class="section-num">PART 04</span>
-    <h2>题型过渡期</h2>
+    <span class="section-num">PART 05</span>
+    <h2>阶段二：题型过渡期</h2>
   </div>
 
   <div class="stage-block s2">
     <div class="stage-header">
-      <h3>从「听故事懂情节」到「听信息抓考点」</h3>
-      <span class="stage-badge">CEFR A1+ → A2 · 2–3 个月</span>
+      <h3>从「听懂大意」到「听懂考点」</h3>
+      <span class="stage-badge">2–3 个月 · 每天 20 分钟</span>
     </div>
     <div class="stage-body">
 
-      <div class="stage-sub-label">学习进程</div>
-      <ul>
-        <li><strong>频次</strong>：每周 4 天泛听 + 2 天题型训练，每天 15–20 分钟。</li>
-      </ul>
-      <div class="flow-steps">
-        <div class="flow-step" style="border-left-color: var(--stage2);">
-          <div class="flow-step-num" style="color: var(--stage2);">泛听日 · 15 分钟</div>
-          <div class="flow-step-title">课文对话泛听</div>
-          <div class="flow-step-desc">听 1 个单元的课文对话音频，裸听 2 遍，听懂大意即可。</div>
-        </div>
-        <div class="flow-step" style="border-left-color: var(--stage2);">
-          <div class="flow-step-num" style="color: var(--stage2);">做题日 · 20 分钟</div>
-          <div class="flow-step-title">听力习题训练</div>
-          <div class="flow-step-desc">完成 1 个单元听力习题 → 对照原文精听错题 → 跟读错题原句 3 遍。</div>
-        </div>
-        <div class="flow-step" style="border-left-color: var(--stage2);">
-          <div class="flow-step-num" style="color: var(--stage2);">关键能力</div>
-          <div class="flow-step-title">主动抓关键信息</div>
-          <div class="flow-step-desc">学会定位时间、地点、数字、人物观点等考点，为 KET 题型铺路。</div>
-        </div>
-      </div>
+      <div class="stage-sub-label" style="color:#D4943A;">对应材料层：第二层 · 教材层（保持）+ 第三层 · 应试层（进入）</div>
+      <div class="stage-sub-label">阶段定位</div>
+      <p>核心转变：让孩子习惯「带着问题听」——先读题、预判考点、边听边抓关键信息。这是国内孩子最容易卡住的环节：<strong>听得懂内容，但不知道要听什么</strong>。本阶段用 Flyers 级别的官方材料无痛过渡：Flyers 与 KET 同属 CEFR A2，但任务量更小、语速更慢、配卡通图，实际难度低于 KET（俗称「低半格」），可避免直接上真题产生挫败。</p>
 
-      <div class="stage-sub-label">配套资料：剑桥 Fun Skills 6 级（学生用书）</div>
-      <table>
-        <tr><th style="width:25%">维度</th><th>内容说明</th></tr>
-        <tr><td>内容体量</td><td>6 个主题单元 + 2 套完整 Flyers 模拟题</td></tr>
-        <tr><td>题型设计</td><td>图片匹配题、短对话理解题、信息填空题（数字/姓名/地点），与 KET 同源但难度简化</td></tr>
-        <tr><td>话题范围</td><td>校园、生日、购物、出行、兴趣爱好、动物自然，完全贴合小学生生活场景</td></tr>
-        <tr><td>选型理由</td><td>剑桥官方出品，对应 Flyers 级别，比 KET 低半格，卡通化低题量设计，无痛过渡</td></tr>
+      <div class="stage-sub-label">每日流程（泛听 + 做题轮换）</div>
+      <table class="card-table">
+        <tr><th style="width:18%">周内安排</th><th style="width:22%">时长</th><th style="width:60%">内容</th></tr>
+        <tr><td data-label="周内安排">周一 / 三 / 五<br>（能力日）</td><td data-label="时长">20 分钟</td><td data-label="内容">初章书有声书 10 分钟 + Think 1 听力板块跟学 10 分钟，保持能力线不断</td></tr>
+        <tr><td data-label="周内安排">周二 / 四 / 六<br>（做题日）</td><td data-label="时长">约 22–25 分钟</td><td data-label="内容">Fun Skills 6 完成 1 个单元听力练习（15 分钟）→ 对照原文精听错题（5–8 分钟）→ 跟读错题原句 3 遍（2 分钟）</td></tr>
       </table>
 
-      <div class="stage-sub-label">词汇量目标</div>
+      <div class="stage-sub-label">Fun Skills 6 题型训练要点（与 KET 同源）</div>
+      <ul>
+        <li><strong>图片选图题</strong>（对应 KET Part 1）：听短对话前先看图，预判「会提到什么词」，再听关键词定位；</li>
+        <li><strong>短对话理解</strong>（对应 KET Part 3 / Part 4）：教孩子分辨「干扰信息」——对话常先抛出一个错误选项再纠正；</li>
+        <li><strong>信息填空</strong>（对应 KET Part 2）：重点练数字、时间、姓名拼写，要求「边听边写」，培养速记习惯；</li>
+        <li><strong>匹配题</strong>（对应 KET Part 5）：先读所有人名/选项，听时用「排除法」逐项确认。</li>
+      </ul>
+
+      <div class="stage-sub-label">词汇目标</div>
       <div class="vocab-bar-wrap">
         <div class="vocab-bar-label">
-          <span>阶段听力词汇目标：1,800 – 2,000 个</span>
-          <span>与 KET 考纲重合度 ≈ 85%</span>
+          <span>听力词汇 2,000 → 2,200，覆盖 KET 高频场景词</span>
+          <span>目标：数字/时间/拼写类 100% 听写正确</span>
         </div>
         <div class="vocab-bar"><div class="vocab-fill"></div></div>
       </div>
 
-      <div class="stage-sub-label">阶段目标</div>
+      <div class="stage-sub-label">本阶段验收</div>
       <ul>
-        <li>完成从「泛听情节」到「精听细节」的能力转变。</li>
-        <li>提前熟悉 KET 听力出题逻辑和提问方式，避免正式刷题时看不懂题。</li>
-        <li>逐步提升听力专注时长，从 10 分钟过渡到 20 分钟。</li>
-        <li>用低题量、卡通化题型降低应试感，保护学习兴趣。</li>
+        <li>Fun Skills 6 模拟题听力正确率稳定 ≥ 75%；</li>
+        <li>能主动说出「这道题要听什么」（预判考点），而不是听完再猜；</li>
+        <li>数字、时间、姓名拼写听写正确率 ≥ 90%。</li>
       </ul>
     </div>
   </div>
 </section>
 
-<!-- ===== 第五章：阶段三 ===== -->
-<section id="stage3">
+<!-- ===== 06 阶段三：冲刺模考期 ===== -->
+<section id="s6">
   <div class="section-header">
-    <span class="section-num">PART 05</span>
-    <h2>冲刺精听期</h2>
+    <span class="section-num">PART 06</span>
+    <h2>阶段三：冲刺模考期</h2>
   </div>
 
   <div class="stage-block s3">
     <div class="stage-header">
-      <h3>对接官方难度，精听 + 模考双轨推进</h3>
-      <span class="stage-badge">CEFR A2 · 2–3 个月</span>
+      <h3>对接官方难度：题型突破 + 全真模考</h3>
+      <span class="stage-badge">1.5–2 个月 · 每天 20–25 分钟</span>
     </div>
     <div class="stage-body">
 
-      <div class="stage-sub-label">学习进程</div>
+      <div class="stage-sub-label" style="color:#B5544A;">对应材料层：第三层 · 应试层（全部切换，输入/教材层保温）</div>
+      <div class="stage-sub-label">阶段定位</div>
+      <p>用剑桥官方标准难度的材料完成最后的题型强化与考试适应。两个子阶段：<strong>题型突破</strong>（用 KET Trainer 拆解 5 大题型、讲方法）→ <strong>全真模考</strong>（用官方真题集按真实流程完整模拟）。</p>
+
+      <div class="stage-sub-label">子阶段 A：题型突破（前 3–4 周）</div>
       <ul>
-        <li><strong>题型突破阶段（前 1–1.5 个月）</strong>：拆解听力 4 大题型，逐个突破，每天 20 分钟。</li>
-        <li><strong>全真模考阶段（考前 1 个月）</strong>：每周 1 套完整听力卷，其余时间精听错题，每天 20–25 分钟。</li>
+        <li>用 KET Trainer 校园版，每 2–3 天攻克 1 个 Part：先读题型说明与答题技巧 → 做该 Part 模拟题 → 精听复盘；</li>
+        <li>重点：Part 2 独白填空的拼写速记、Part 5 配对题的排除法、Part 3 长对话的细节定位、Part 4 主旨题的「转折 / 态度信号词」；</li>
+        <li>建立「听力错题本」：每道错题记录「为什么错」（没听到 / 听错 / 不认识词 / 被干扰）。</li>
       </ul>
-      <div class="flow-steps">
-        <div class="flow-step" style="border-left-color: var(--stage3);">
-          <div class="flow-step-num" style="color: var(--stage3);">第一遍</div>
-          <div class="flow-step-title">计时做题</div>
-          <div class="flow-step-desc">模拟考试状态，不暂停、不回放，完整做完一整套或一个 Part。</div>
-        </div>
-        <div class="flow-step" style="border-left-color: var(--stage3);">
-          <div class="flow-step-num" style="color: var(--stage3);">第二遍</div>
-          <div class="flow-step-title">逐句精听</div>
-          <div class="flow-step-desc">没听清的句子反复听 3 遍，标记听不懂的单词和连读现象。</div>
-        </div>
-        <div class="flow-step" style="border-left-color: var(--stage3);">
-          <div class="flow-step-num" style="color: var(--stage3);">第三遍</div>
-          <div class="flow-step-title">原文跟读</div>
-          <div class="flow-step-desc">对照听力原文跟读，匹配原声语速，整理错题对应考点。</div>
-        </div>
-      </div>
 
-      <div class="stage-sub-label">配套资料</div>
-      <table>
-        <tr>
-          <th style="width:22%">资料名称</th>
-          <th style="width:15%">内容体量</th>
-          <th>核心结构与价值</th>
-        </tr>
-        <tr>
-          <td>KET Trainer 校园版</td>
-          <td>题型讲解 + 2 套模拟题</td>
-          <td>拆解 4 大听力题型考点与答题技巧，带详细解析；家长不用懂英语也能对照讲解。</td>
-        </tr>
-        <tr>
-          <td>KET 官方真题集<br>校园版 1</td>
-          <td>4 套完整真题</td>
-          <td>1:1 还原考试难度、语速、口音（英/美/澳音），含官方答案与听力原文；最权威的精听素材。</td>
-        </tr>
+      <div class="stage-sub-label">子阶段 B：全真模考（考前 3–4 周）</div>
+      <table class="card-table">
+        <tr><th style="width:22%">频率</th><th style="width:22%">内容</th><th style="width:56%">要求</th></tr>
+        <tr><td data-label="频率">每周 1 次整套模考</td><td data-label="内容">真题集 1 套 Listening</td><td data-label="要求">计时 30 分钟完整做（含 6 分钟誊写），模拟真实考试，中途不暂停</td></tr>
+        <tr><td data-label="频率">其余 5 天（每周留 1 天休息）</td><td data-label="内容">精听复盘 + 泛听保温</td><td data-label="要求">模考卷逐句精听 2 遍，错题句跟读 3 遍；初章书有声书继续 10 分钟</td></tr>
+        <tr><td data-label="频率">考前最后一周</td><td data-label="内容">只保温不增量</td><td data-label="要求">每天 15 分钟：听熟悉的材料 + 复习错题本，不再做新题，保持手感与信心</td></tr>
       </table>
-      <p style="font-size:13px;color:var(--ink-muted);margin-top:-8px;">匹配题型：Part 1 短对话图片选（5 题）· Part 2 长对话信息匹配（5 题）· Part 3 长对话/独白填空（5 题）· Part 4 长文本理解选择（5 题）。</p>
 
-      <div class="stage-sub-label">词汇量目标</div>
+      <div class="stage-sub-label">词汇目标</div>
       <div class="vocab-bar-wrap">
         <div class="vocab-bar-label">
-          <span>阶段听力词汇目标：2,000 – 2,200 个</span>
-          <span>100% 覆盖 KET 考纲</span>
+          <span>听力词汇 2,200+，完全覆盖 KET 考纲高频词</span>
+          <span>目标：模考正确率 ≥ 80%</span>
         </div>
         <div class="vocab-bar"><div class="vocab-fill"></div></div>
       </div>
 
-      <div class="stage-sub-label">阶段目标</div>
+      <div class="stage-sub-label">本阶段验收</div>
       <ul>
-        <li>完全适应 KET 考试语速、口音、信息密度，消除考试陌生感。</li>
-        <li>掌握每个题型的答题技巧，提升关键信息定位与错题分析能力。</li>
-        <li>通过精听补齐听力盲区，吃透易错点与连读弱读难点。</li>
-        <li>建立考试时间感，适应 30 分钟完整听力考试节奏。</li>
-        <li>用最少的真题实现最高提分效率，避免盲目刷题浪费权威资源。</li>
+        <li>真题听力正确率稳定 ≥ 80%（20/25 题以上）；</li>
+        <li>能 30 分钟不间断专注完成整套听力，节奏感稳定；</li>
+        <li>错题能通过精听自行定位原因并复述考点。</li>
       </ul>
     </div>
   </div>
 </section>
 
-<!-- ===== 第六章：验收标准 ===== -->
-<section id="checkpoint">
+<!-- ===== 07 资料全景清单 ===== -->
+<section id="s7">
   <div class="section-header">
-    <span class="section-num">PART 06</span>
-    <h2>阶段进阶验收标准</h2>
+    <span class="section-num">PART 07</span>
+    <h2>资料全景清单与同尺度对比</h2>
   </div>
-  <p>达到以下全部标准再进入下一阶段，避免盲目推进、基础不牢。</p>
 
-  <div class="checkpoint">
-    <div class="check-icon">1</div>
-    <div class="check-content">
-      <h4>基础期 → 过渡期</h4>
-      <p>牛津树 8–9 级、RAZ G 级内容，裸听 2 遍能听懂 80% 以上大意；核心词汇听发音能立刻反应出词义，无需借助文本。</p>
+  <div class="card">
+    <h3>泛听类（能力线 · 磨耳朵）</h3>
+    <table class="card-table">
+      <tr><th style="width:18%">资料</th><th style="width:10%">难度</th><th style="width:14%">蓝思/CEFR</th><th style="width:42%">功能与词汇</th><th style="width:16%">使用建议</th></tr>
+      <tr>
+        <td data-label="资料"><strong>Judy Moody and Friends 有声书</strong></td><td data-label="难度">初章书</td><td data-label="蓝思/CEFR">约 500–600L<br>A2 入门</td>
+        <td data-label="功能与词汇">校园生活题材，口语化、幽默梗多，听力口语化表达积累效果最佳；词汇贴近 KET 校园话题</td>
+        <td data-label="使用建议">先看书后裸听；每章节听 2 遍</td>
+      </tr>
+      <tr>
+        <td data-label="资料"><strong>Magic Tree House 有声书</strong></td><td data-label="难度">初章书</td><td data-label="蓝思/CEFR">约 380–610L<br>A1+ → A2</td>
+        <td data-label="功能与词汇">冒险科普题材，句式规整、重复度高，适合听力耐力训练；科普词与 KET 阅读话题重合</td>
+        <td data-label="使用建议">与 Judy Moody 交替使用，防审美疲劳</td>
+      </tr>
+      <tr>
+        <td data-label="资料"><strong>牛津树 L8–L9 音频</strong></td><td data-label="难度">分级读物</td><td data-label="蓝思/CEFR">约 500–620L<br>A2 入门</td>
+        <td data-label="功能与词汇">已读文本的可理解输入，音形对应收尾；章节式故事听力热身</td>
+        <td data-label="使用建议">睡前裸听，低压力</td>
+      </tr>
+      <tr>
+        <td data-label="资料"><strong>Think 1 教材配套音频</strong></td><td data-label="难度">教材</td><td data-label="蓝思/CEFR">A2</td>
+        <td data-label="功能与词汇">与机构课同步，话题、词汇 100% 对齐 KET 考纲；听力板块即能力训练</td>
+        <td data-label="使用建议">跟学 + 重听复习，双线合流</td>
+      </tr>
+      <tr>
+        <td data-label="资料"><strong>Reading Explorer 1 音频</strong></td><td data-label="难度">精读教材</td><td data-label="蓝思/CEFR">A2<br>文本约 700+</td>
+        <td data-label="功能与词汇">科普类长文本听力，词汇密度高，为 KET 之后的衔接打底（可只听不做题）</td>
+        <td data-label="使用建议">配合精读课使用，泛听为主</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3>应试类（应试线 · 题型训练）</h3>
+    <table class="card-table">
+      <tr><th style="width:18%">资料</th><th style="width:12%">难度</th><th style="width:14%">对应等级</th><th style="width:40%">功能</th><th style="width:16%">使用建议</th></tr>
+      <tr>
+        <td data-label="资料"><strong>剑桥 Fun Skills 6</strong></td><td data-label="难度">过渡</td><td data-label="对应等级">Flyers<br>（比 KET 低半格）</td>
+        <td data-label="功能">题型与 KET 同源的官方过渡材料，卡通化低题量，无痛引入「带题听」</td>
+        <td data-label="使用建议">阶段二主教材，每单元 1–2 天</td>
+      </tr>
+      <tr>
+        <td data-label="资料"><strong>KET Trainer 校园版</strong></td><td data-label="难度">标准</td><td data-label="对应等级">A2（KET）</td>
+        <td data-label="功能">「题型讲解 + 答题技巧 + 模拟题」三合一，带详细解析，家长零英语基础也能对照辅导</td>
+        <td data-label="使用建议">阶段三子阶段 A 主教材</td>
+      </tr>
+      <tr>
+        <td data-label="资料"><strong>KET 官方真题集 校园版1</strong></td><td data-label="难度">标准</td><td data-label="对应等级">A2（KET）</td>
+        <td data-label="功能">1:1 还原考试语速、口音（英/美/澳）、出题逻辑，最权威的精听与模考素材</td>
+        <td data-label="使用建议">阶段三子阶段 B 模考 + 精听</td>
+      </tr>
+      <tr>
+        <td data-label="资料"><strong>（可选）KET 真题集 校园版2</strong></td><td data-label="难度">标准</td><td data-label="对应等级">A2（KET）</td>
+        <td data-label="功能">补充题量，仅当第一本刷完且正确率未达 80% 时购入</td>
+        <td data-label="使用建议">按需加购，不默认购买</td>
+      </tr>
+    </table>
+    <div class="note"><b>选型原则：</b>同类材料 1–2 套吃透即可。Fun Skills + Trainer + 真题集 1 三本已覆盖全部需求；Storyfun、听力 800 题等不做默认推荐，避免资源囤积。</div>
+  </div>
+
+  <div class="card">
+    <h3>资料获取方式（全部为正版渠道）</h3>
+    <ul>
+      <li><strong>Fun Skills 6 / KET Trainer / 真题集</strong>：外研社引进版，京东/天猫旗舰店购买，封底扫码获取配套音频（可缓存离线）；原版附带 CD 可翻录为 MP3。</li>
+      <li><strong>Judy Moody / Magic Tree House 有声书</strong>：喜马拉雅儿童、Audible 等正版有声书平台，购买后下载收听。</li>
+      <li><strong>Think 1 / RE 1 音频</strong>：机构教材自带，随书扫码或平台账号内获取。</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>7.4 全套材料同尺度对比（蓝思 × CEFR 统一坐标）</h3>
+    <p>把方案中全部 9 套材料放入同一坐标系（横轴：CEFR 等级与蓝思值，纵轴：功能性分层），级别差异与角色分工一目了然。<b>蓝思值为行业通行估算，非官方精确值，标注「示意」。</b></p>
+    <div class="scale-map" style="background:#F9F8F4;border-radius:10px;padding:16px 14px;margin:12px 0;">
+      <!-- 顶部标尺 -->
+      <div class="scale-map-ruler" style="display:grid;grid-template-columns:repeat(5,1fr);text-align:center;font-size:12px;color:#6B7280;margin-bottom:2px;">
+        <div>A1<br><span style="color:#9AA0A6;font-size:11px;">300L</span></div>
+        <div>A1+<br><span style="color:#9AA0A6;font-size:11px;">450L</span></div>
+        <div>A2 入门<br><span style="color:#9AA0A6;font-size:11px;">600L</span></div>
+        <div>A2 标准<br><span style="color:#9AA0A6;font-size:11px;">750L</span></div>
+        <div>A2+ / B1<br><span style="color:#9AA0A6;font-size:11px;">900L</span></div>
+      </div>
+      <div class="scale-map-ruler" style="height:6px;border-radius:3px;background:linear-gradient(90deg,#9CC3C2,#2C5F5D);margin-bottom:14px;"></div>
+
+      <!-- 输入层 -->
+      <div style="font-size:12px;font-weight:600;color:#5B8C5A;margin-bottom:4px;">第一层 · 输入层（能力线·泛听）</div>
+      <div class="track" style="position:relative;height:52px;margin-bottom:12px;background:#fff;border-radius:8px;">
+        <div style="position:absolute;left:10%;width:16%;top:6px;height:40px;background:#5B8C5A;color:#fff;border-radius:6px;text-align:center;padding:4px 2px;font-size:12px;line-height:1.35;overflow:hidden;">RAZ G<br><span style="font-size:10px;opacity:.85;">300–450L</span></div>
+        <div style="position:absolute;left:27%;width:14%;top:6px;height:40px;background:#5B8C5A;color:#fff;border-radius:6px;text-align:center;padding:4px 2px;font-size:12px;line-height:1.35;overflow:hidden;">牛津树 L7<br><span style="font-size:10px;opacity:.85;">400–500L</span></div>
+        <div style="position:absolute;left:42%;width:14%;top:6px;height:40px;background:#5B8C5A;color:#fff;border-radius:6px;text-align:center;padding:4px 2px;font-size:12px;line-height:1.35;overflow:hidden;">牛津树 L8–9<br><span style="font-size:10px;opacity:.85;">500–620L</span></div>
+        <div style="position:absolute;left:57%;width:15%;top:6px;height:40px;background:#C8893A;color:#fff;border-radius:6px;text-align:center;padding:4px 2px;font-size:12px;line-height:1.35;overflow:hidden;">Judy Moody<br><span style="font-size:10px;opacity:.85;">500–600L</span></div>
+      </div>
+
+      <!-- 教材层 -->
+      <div style="font-size:12px;font-weight:600;color:#2C5F5D;margin-bottom:4px;">第二层 · 系统教材层（机构线）</div>
+      <div class="track" style="position:relative;height:52px;margin-bottom:12px;background:#fff;border-radius:8px;">
+        <div style="position:absolute;left:52%;width:18%;top:6px;height:40px;background:#2C5F5D;color:#fff;border-radius:6px;text-align:center;padding:4px 2px;font-size:12px;line-height:1.35;overflow:hidden;">Think 1<br><span style="font-size:10px;opacity:.85;">A2 · 约700L+</span></div>
+        <div style="position:absolute;left:76%;width:17%;top:6px;height:40px;background:#1E4543;color:#fff;border-radius:6px;text-align:center;padding:4px 2px;font-size:12px;line-height:1.35;overflow:hidden;">RE 1<br><span style="font-size:10px;opacity:.85;">A2+ · 700–850L</span></div>
+      </div>
+
+      <!-- 应试层 -->
+      <div style="font-size:12px;font-weight:600;color:#B5544A;margin-bottom:4px;">第三层 · 应试层（题型→模考）</div>
+      <div class="track" style="position:relative;height:52px;background:#fff;border-radius:8px;">
+        <div style="position:absolute;left:48%;width:16%;top:6px;height:40px;background:#D4943A;color:#fff;border-radius:6px;text-align:center;padding:4px 2px;font-size:12px;line-height:1.35;overflow:hidden;">Fun Skills 6<br><span style="font-size:10px;opacity:.85;">Flyers 约550–650L</span></div>
+        <div style="position:absolute;left:64%;width:16%;top:6px;height:40px;background:#B5544A;color:#fff;border-radius:6px;text-align:center;padding:4px 2px;font-size:12px;line-height:1.35;overflow:hidden;">KET Trainer<br><span style="font-size:10px;opacity:.85;">A2 · 约700L+</span></div>
+        <div style="position:absolute;left:80%;width:15%;top:6px;height:40px;background:#B5544A;color:#fff;border-radius:6px;text-align:center;padding:4px 2px;font-size:12px;line-height:1.35;overflow:hidden;">真题集 1<br><span style="font-size:10px;opacity:.85;">A2 官方难度</span></div>
+      </div>
+      <div style="font-size:12px;color:#6B7280;margin-top:8px;">▲ 图例：绿＝输入层（能力线）· 蓝＝教材层（机构线）· 橙/红＝应试层（题型→模考）· 金色＝当前在读。Magic Tree House（380–610L）与 Judy Moody 同级，为备选替代。蓝思值为估算「示意」。</div>
     </div>
   </div>
 
-  <div class="checkpoint">
-    <div class="check-icon">2</div>
-    <div class="check-content">
-      <h4>过渡期 → 冲刺期</h4>
-      <p>Fun Skills 6 级模拟题听力正确率稳定在 70% 以上；能主动抓住对话中的数字、地点、人物观点等关键信息。</p>
-    </div>
+  <div class="card">
+    <h3>7.5 材料差异化对比表（9 套主用 + 1 套备选）</h3>
+    <table class="card-table">
+      <tr><th style="width:18%">材料</th><th style="width:12%">体裁</th><th style="width:16%">蓝思/CEFR（估）</th><th style="width:18%">词汇功能</th><th style="width:22%">听力角色与 KET 相关性</th><th style="width:14%">优先级</th></tr>
+      <tr><td data-label="材料">RAZ G</td><td data-label="体裁">分级读物</td><td data-label="蓝思/CEFR（估）">300–450L · A1</td><td data-label="词汇功能">科普+生活基础词</td><td data-label="听力角色与 KET 相关性">阅读词汇转听力；间接打底</td><td data-label="优先级">已读完</td></tr>
+      <tr><td data-label="材料">牛津树 L7</td><td data-label="体裁">分级读物</td><td data-label="蓝思/CEFR（估）">400–500L · A1+</td><td data-label="词汇功能">生活冒险词，对话增多</td><td data-label="听力角色与 KET 相关性">可理解输入、音形对应；间接</td><td data-label="优先级">已读完</td></tr>
+      <tr><td data-label="材料">Judy Moody and Friends</td><td data-label="体裁">初章书</td><td data-label="蓝思/CEFR（估）">500–600L · A1+→A2</td><td data-label="词汇功能">校园口语、幽默表达</td><td data-label="听力角色与 KET 相关性">口语化语音流泛听；话题与 KET 校园场景重合度高</td><td data-label="优先级">主泛听（在读）</td></tr>
+      <tr><td data-label="材料">Magic Tree House</td><td data-label="体裁">初章书</td><td data-label="蓝思/CEFR（估）">380–610L · A1+→A2</td><td data-label="词汇功能">冒险+科普词</td><td data-label="听力角色与 KET 相关性">听力耐力训练；句式规整，可理解性强</td><td data-label="优先级">备选替代</td></tr>
+      <tr><td data-label="材料">牛津树 L8–9</td><td data-label="体裁">分级读物</td><td data-label="蓝思/CEFR（估）">500–620L · A2 入门</td><td data-label="词汇功能">章节式故事，信息密度提升</td><td data-label="听力角色与 KET 相关性">睡前裸听，向考试语速靠拢；间接</td><td data-label="优先级">睡前保温</td></tr>
+      <tr><td data-label="材料">Think 1</td><td data-label="体裁">综合教材</td><td data-label="蓝思/CEFR（估）">A2 · 约 700L+</td><td data-label="词汇功能">KET 考纲全话题词</td><td data-label="听力角色与 KET 相关性">能力主线：听力板块与题型同源；相关性高</td><td data-label="优先级">机构主线（在读）</td></tr>
+      <tr><td data-label="材料">Reading Explorer 1</td><td data-label="体裁">阅读教材</td><td data-label="蓝思/CEFR（估）">A2+ · 700–850L</td><td data-label="词汇功能">学术科普、高密度词汇</td><td data-label="听力角色与 KET 相关性">长文本精听拔高；超出 KET 上限，为后续衔接</td><td data-label="优先级">阅读强化（在读）</td></tr>
+      <tr><td data-label="材料">Fun Skills 6</td><td data-label="体裁">官方过渡</td><td data-label="蓝思/CEFR（估）">Flyers · 约 550–650L</td><td data-label="词汇功能">Flyers 考纲词</td><td data-label="听力角色与 KET 相关性">题型无痛过渡，题型与 KET 同源；相关性高</td><td data-label="优先级">阶段二主材</td></tr>
+      <tr><td data-label="材料">KET Trainer 校园版</td><td data-label="体裁">官方备考</td><td data-label="蓝思/CEFR（估）">A2 · 约 700L+</td><td data-label="词汇功能">KET 考纲全词汇</td><td data-label="听力角色与 KET 相关性">题型方法 + 模拟题；直接对应</td><td data-label="优先级">阶段三主材</td></tr>
+      <tr><td data-label="材料">KET 官方真题集 1</td><td data-label="体裁">官方真题</td><td data-label="蓝思/CEFR（估）">A2 · 官方难度</td><td data-label="词汇功能">KET 考纲 100%</td><td data-label="听力角色与 KET 相关性">全真模考 + 精听；1:1 对应考试</td><td data-label="优先级">阶段三核心</td></tr>
+    </table>
   </div>
 
-  <div class="checkpoint">
-    <div class="check-icon">3</div>
-    <div class="check-content">
-      <h4>冲刺期最终验收</h4>
-      <p>真题听力正确率稳定在 80% 以上；能专注听完整套试题；错题可通过精听自行定位原因。</p>
+  <div class="card">
+    <h3>7.6 功能性分层分析</h3>
+    <div class="layer-grid" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin:12px 0;">
+      <div style="background:#EDF3EC;border-radius:8px;padding:12px 14px;">
+        <div style="font-weight:700;font-size:14px;color:#5B8C5A;margin-bottom:6px;">第一层 · 输入层</div>
+        <div style="font-size:13px;color:#4B5563;line-height:1.7;">
+          职责：可理解输入、音形对应、口语语音流、听力耐力。<br><br>
+          KET 相关性：<b>间接</b>，负责能力底盘，不直接对应题型。<br><br>
+          选型：同级 1–2 套即可，重口语选 Judy Moody，重句式规整选 MTH。
+        </div>
+      </div>
+      <div style="background:#E8F0EF;border-radius:8px;padding:12px 14px;">
+        <div style="font-weight:700;font-size:14px;color:#2C5F5D;margin-bottom:6px;">第二层 · 教材系统层</div>
+        <div style="font-size:13px;color:#4B5563;line-height:1.7;">
+          职责：系统话题词汇与语法、听力板块题型同源、长文本拔高。<br><br>
+          KET 相关性：<b>高</b>，教材即考纲，是水平定位锚点。<br><br>
+          选型：Think 1 为主、RE 1 为辅，机构进度为准。
+        </div>
+      </div>
+      <div style="background:#F8ECEA;border-radius:8px;padding:12px 14px;">
+        <div style="font-weight:700;font-size:14px;color:#B5544A;margin-bottom:6px;">第三层 · 应试层</div>
+        <div style="font-size:13px;color:#4B5563;line-height:1.7;">
+          职责：题型无痛过渡 → 答题方法 → 全真模考。<br><br>
+          KET 相关性：<b>直接对应</b>，全部围绕考试本身。<br><br>
+          选型：Fun Skills 6 → Trainer → 真题集，按阶段推进，不并行。
+        </div>
+      </div>
     </div>
+    <div class="note"><b>同尺度对比的关键结论：</b>① 难度上三层递进——输入层上限约 620L（牛津树高阶与初章书难度本就重叠，属正常现象），教材层与应试层集中在 700–850L，RE 1 是唯一覆盖 A2+ 的材料，负责拔高；② 功能上互补而非重复——同层材料二选一即可，跨层材料不可替代；③ 双线结构成立——Think 1 锚定 A2 是定位基准，泛读线滞后约 1 级不影响备考，反而负责保温兴趣。</div>
   </div>
 </section>
 
-<!-- ===== 第七章：执行原则与避坑 ===== -->
-<section id="principles">
+<!-- ===== 08 听力训练方法论 ===== -->
+<section id="s8">
   <div class="section-header">
-    <span class="section-num">PART 07</span>
-    <h2>执行原则与避坑指南</h2>
+    <span class="section-num">PART 08</span>
+    <h2>听力训练方法论</h2>
+  </div>
+
+  <div class="card">
+    <h3>8.1 泛听：怎么才算「有效磨耳朵」</h3>
+    <ul>
+      <li><strong>可理解输入是前提</strong>：听懂 70–80% 以上的材料才有效；完全听不懂的背景音只是噪音，不会提升听力。</li>
+      <li><strong>重复优先于新鲜</strong>：同一章节听 2–3 遍，比听 3 个新章节效果好；「把不熟的听熟」才是听力进步的本质。</li>
+      <li><strong>「看书听 → 合书听 → 盲听」三步走</strong>：先用文本锚定声音，再脱离文本检验，最后闭眼盲听训练语音流。</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>8.2 精听：KET 错题三步法（每题 3–4 分钟）</h3>
+    <div class="flow-steps">
+      <div class="flow-step">
+        <div class="flow-step-num">第一遍</div>
+        <div class="flow-step-title">原文回放</div>
+        <div class="flow-step-desc">对照听力原文听错题所在句子，找到「卡住」的具体位置</div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-step-num">第二遍</div>
+        <div class="flow-step-title">逐句复听</div>
+        <div class="flow-step-desc">单句循环 2–3 遍，标记听不懂的单词、连读、弱读</div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-step-num">第三遍</div>
+        <div class="flow-step-title">跟读复述</div>
+        <div class="flow-step-desc">跟读原句 3 遍，模仿语气与节奏，最后合上原文复述</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>8.3 复读机与变速的正确用法</h3>
+    <ul>
+      <li><strong>变速</strong>：起步 0.8 倍速听懂每个音 → 1.0 倍速 → 冲刺期可试 1.1–1.2 倍速「降维打击」；不要长期依赖慢速。</li>
+      <li><strong>AB 循环</strong>：精听时对难点句设置循环；泛听时不使用循环，保持连续语流。</li>
+      <li><strong>书签</strong>：给错题句、生词句打书签，方便次日复习。</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>8.4 听力词汇本（iPad 备忘录）</h3>
+    <ul>
+      <li>每周 5–10 个「听到却反应不过来」的词，记入备忘录：<strong>发音（可用音标/谐音）→ 词义 → 例句</strong>。</li>
+      <li>每周五家长抽查听写：家长读词（或用 APP 朗读），孩子写拼写 + 说中文意思。</li>
+      <li>滚动复习：新词 3 天内复习 3 遍（当天、次日、第三天），之后每周复习 1 次。</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ===== 09 每日 / 每周执行模板 ===== -->
+<section id="s9">
+  <div class="section-header">
+    <span class="section-num">PART 09</span>
+    <h2>每日 / 每周执行模板</h2>
+  </div>
+
+  <div class="card">
+    <h3>9.1 每日 25 分钟模板（阶段二/三通用）</h3>
+    <table class="card-table">
+      <tr><th style="width:22%">时段</th><th style="width:16%">时长</th><th style="width:62%">内容</th></tr>
+      <tr><td data-label="时段">泛听热身</td><td data-label="时长">8 分钟</td><td data-label="内容">初章书有声书，先看书听，再合书裸听</td></tr>
+      <tr><td data-label="时段">题型训练</td><td data-label="时长">12 分钟</td><td data-label="内容">Fun Skills / Trainer / 真题，1 个 Part 或 1 个单元</td></tr>
+      <tr><td data-label="时段">精听复盘</td><td data-label="时长">4 分钟</td><td data-label="内容">错题三步法，跟读 3 遍</td></tr>
+      <tr><td data-label="时段">收尾巩固</td><td data-label="时长">1 分钟</td><td data-label="内容">听力词汇本新增 1–2 个词，念 3 遍</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3>9.2 每周模板（阶段二示例）</h3>
+    <table class="week-table">
+      <tr><th style="width:12%">星期</th><th style="width:22%">主题</th><th style="width:66%">安排</th></tr>
+      <tr><td data-label="星期">周一</td><td data-label="主题">能力日</td><td data-label="安排">泛听 15 分钟 + Think 1 听力跟学 10 分钟</td></tr>
+      <tr><td data-label="星期">周二</td><td data-label="主题">做题日</td><td data-label="安排">Fun Skills 6 一个单元 + 错题精听（20–25 分钟）</td></tr>
+      <tr><td data-label="星期">周三</td><td data-label="主题">能力日</td><td data-label="安排">泛听 15 分钟 + 睡前裸听 10 分钟</td></tr>
+      <tr><td data-label="星期">周四</td><td data-label="主题">做题日</td><td data-label="安排">Fun Skills 6 一个单元 + 错题精听（20–25 分钟）</td></tr>
+      <tr><td data-label="星期">周五</td><td data-label="主题">能力日</td><td data-label="安排">泛听 15 分钟 + 听力词汇本周复习（10 分钟）</td></tr>
+      <tr><td data-label="星期">周六</td><td data-label="主题">整段听力</td><td data-label="安排">25 分钟连续听（材料自选），模拟专注时长</td></tr>
+      <tr><td data-label="星期">周日</td><td data-label="主题">休息</td><td data-label="安排">完全不安排，保护兴趣</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- ===== 10 进度跟踪与验收 ===== -->
+<section id="s10">
+  <div class="section-header">
+    <span class="section-num">PART 10</span>
+    <h2>进度跟踪与验收</h2>
+  </div>
+
+  <div class="card">
+    <h3>10.1 开跑前摸底（1 次，30 分钟）</h3>
+    <ul>
+      <li>用 KET 官方真题集校园版 1 的 <strong>第一套 Listening</strong> 让孩子完整做一遍（不复习、不指导）；</li>
+      <li>记录正确率：<strong>≥ 70%</strong> 直接从阶段二开始；<strong>50–70%</strong> 从阶段一后半段开始；<strong>&lt; 50%</strong> 完整走阶段一；</li>
+      <li>这套摸底卷留作「期末对照」，冲刺期结束时重做，直观看到进步。</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>10.2 三阶段验收标准汇总</h3>
+    <div class="checkpoint">
+      <div class="check-icon">1</div>
+      <div class="check-content">
+        <h4>阶段一 → 阶段二</h4>
+        <p>裸听初章书章节能复述关键情节；Think 1 听力练习正确率 ≥ 70%；近音词可区分。</p>
+      </div>
+    </div>
+    <div class="checkpoint">
+      <div class="check-icon">2</div>
+      <div class="check-content">
+        <h4>阶段二 → 阶段三</h4>
+        <p>Fun Skills 6 正确率稳定 ≥ 75%；能预判每道题的考点；数字/拼写听写 ≥ 90%。</p>
+      </div>
+    </div>
+    <div class="checkpoint">
+      <div class="check-icon">3</div>
+      <div class="check-content">
+        <h4>阶段三毕业标准</h4>
+        <p>真题正确率 ≥ 80%（20/25）；30 分钟专注无中断；错题可自行精听定位原因。</p>
+      </div>
+    </div>
+    <div class="note"><b>报考生判断：</b>连续 2 次模考正确率 ≥ 80% 且孩子状态稳定，即可报名正式考试；正确率 70–80% 建议再巩固 2–4 周；&lt; 70% 说明基础未牢，退回上一阶段精听，不要硬考。</div>
+  </div>
+
+  <div class="card">
+    <h3>10.3 家长每周 5 分钟检查单</h3>
+    <ul>
+      <li>本周听力词汇本新增 ≥ 5 个词？周五听写通过率如何？</li>
+      <li>本周做题正确率趋势：上升 / 持平 / 下降？</li>
+      <li>孩子做听力时的状态：主动专注，还是被动应付？（后者先减量调整，不硬推）</li>
+      <li>错题本里最常见的错误类型是什么？（没听到 / 听错 / 生词 / 干扰项）下周针对性解决。</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ===== 11 常见问题与避坑 ===== -->
+<section id="s11">
+  <div class="section-header">
+    <span class="section-num">PART 11</span>
+    <h2>常见问题与避坑</h2>
   </div>
 
   <h3>听力提升四大核心原则</h3>
-  <div class="principle-grid">
+  <div class="grid-2">
     <div class="principle">
       <div class="principle-title">可理解输入优先</div>
-      <div class="principle-desc">只有听懂 80% 以上的内容才是有效输入，完全听不懂的背景音属于无效磨耳朵。</div>
+      <div class="principle-desc">听懂 70–80% 以上才是有效输入；听不懂的背景音只是噪音。</div>
     </div>
     <div class="principle">
       <div class="principle-title">重复大于数量</div>
-      <div class="principle-desc">同一篇音频听 3 遍的效果，远好于泛听 3 篇新内容；听力提升靠「把不熟的听熟」。</div>
+      <div class="principle-desc">同一材料听 2–3 遍的效果，远好于泛听 3 个新材料。</div>
     </div>
     <div class="principle">
       <div class="principle-title">语速循序渐进</div>
-      <div class="principle-desc">起步可用 0.8 倍速，听清每个发音后再逐步提速，拒绝囫囵吞枣听原速。</div>
+      <div class="principle-desc">0.8 倍速起步，听清每个音再提速；冲刺期用 1.1–1.2 倍速降维。</div>
     </div>
     <div class="principle">
-      <div class="principle-title">音形对应闭环</div>
-      <div class="principle-desc">听力训练必须结合文本复盘，确保发音、词义、拼写三者绑定。</div>
+      <div class="principle-title">能力与应试双线并行</div>
+      <div class="principle-desc">只磨耳朵不会做题，只刷题听不懂真实对话；两条线缺一不可。</div>
     </div>
   </div>
 
   <h3>常见误区规避</h3>
-  <div class="pitfall-grid">
+  <div class="grid-2">
     <div class="pitfall">
       <div class="pitfall-title">不要盲目囤积资源</div>
-      <div class="pitfall-desc">同级素材 1–2 套吃透即可，过多资源只会造成选择内耗，无法形成有效积累。</div>
+      <div class="pitfall-desc">同类材料 1–2 套吃透即可；本方案三本主材已覆盖全部需求。</div>
     </div>
     <div class="pitfall">
       <div class="pitfall-title">不要跳过过渡期直接刷真题</div>
-      <div class="pitfall-desc">难度跳级极易打击孩子信心，产生抵触情绪，反而拖慢进度。</div>
+      <div class="pitfall-desc">Flyers 级过渡材料的价值是「无痛引入带题听」，跳级易挫败、易抵触。</div>
     </div>
     <div class="pitfall">
       <div class="pitfall-title">不要只追求做题数量</div>
       <div class="pitfall-desc">真题的核心价值是精听复盘，做过对答案不等于完成训练。</div>
     </div>
     <div class="pitfall">
+      <div class="pitfall-title">不要用超龄材料硬磨</div>
+      <div class="pitfall-desc">RE 1 音频只听不做题；材料听不懂 70% 就降一档，别硬撑。</div>
+    </div>
+    <div class="pitfall">
       <div class="pitfall-title">不要把听力当背景音</div>
-      <div class="pitfall-desc">吃饭、玩耍时的无意识播放，对听力提升的作用极其有限。</div>
+      <div class="pitfall-desc">吃饭玩耍时的无意识播放提升极有限，需要固定时段专注听。</div>
+    </div>
+    <div class="pitfall">
+      <div class="pitfall-title">不要忽略誊写环节</div>
+      <div class="pitfall-desc">KET 听力含 6 分钟誊写答案，平时模考就要练「听完再抄」，避免考试时手忙脚乱。</div>
     </div>
   </div>
+
+  <h3>家长高频问题 FAQ</h3>
+  <details class="faq">
+    <summary>孩子听初章书很多都听不懂，要不要退回分级读物？</summary>
+    <div class="faq-body">先判断「听不懂」的层次：如果是生词太多（每句都有不认识的词），说明材料偏难，退回牛津树 L8–L9 或 RAZ H–I 的音频；如果是「单词认识但听不出来」，这正是要练的——用 0.8 倍速 + 看书听，把音形对应补上即可，不必降级。</div>
+  </details>
+  <details class="faq">
+    <summary>机构课（Think 1）已经很忙了，家庭听力还要每天做吗？</summary>
+    <div class="faq-body">要，但可以合并：把 Think 1 的单元听力当作家庭泛听材料（重听课上内容），既复习了机构课，又完成了听力训练，每天 15 分钟即可。做题日再单独安排 Fun Skills。</div>
+  </details>
+  <details class="faq">
+    <summary>孩子做听力题总是走神、坐不住怎么办？</summary>
+    <div class="faq-body">先从「做题日」减量：每次只做 1 个 Part（5 题、约 5–6 分钟），配合计时器制造「短时挑战感」；连续两周稳定后再逐步加到 2 个 Part、整套。走神多因材料难度略超，不是态度问题，先降难度。</div>
+  </details>
+  <details class="faq">
+    <summary>要不要让孩子背 KET 词汇表？</summary>
+    <div class="faq-body">不推荐低龄孩子孤立背词汇表。词汇应通过「听力场景 + 阅读语境」自然积累：每个高频词在 Judy Moody 和教材里反复出现，比背词表记得牢、用得对。听力词汇本只记「听不出」的词，量小精准。</div>
+  </details>
+  <details class="faq">
+    <summary>真题就 4 套，模考用完了怎么办？</summary>
+    <div class="faq-body">真题不按「做一遍」用，按「吃透」用：第一遍模考 → 第二遍精听 → 第三遍 1.2 倍速复听。4 套题足够支撑整个冲刺期；确需加量再购真题集 2，不必提前囤。</div>
+  </details>
+  <details class="faq">
+    <summary>KET 听力需要多长时间准备？</summary>
+    <div class="faq-body">按本方案：A2 起点 + 每天 20–25 分钟，5–7 个月是合理窗口（激活 1–2 月 + 过渡 2–3 月 + 冲刺 1.5–2 月，各阶段区间为弹性估计，另留 2–3 周机动）。如果摸底 ≥ 70%，可压缩到 3–4 个月；如果孩子明显吃力，宁可延长也别赶考。</div>
+  </details>
 </section>
 
 <!-- ===== 总结 ===== -->
 <div class="summary">
   <h3>方案总结</h3>
-  <p>本方案围绕国内低龄学生的学情特点，以 iPad 为落地载体，通过<strong>精简资源、平滑进阶、标准化流程</strong>，大幅降低家长的辅导门槛和孩子的学习压力。</p>
-  <p>听力提升的核心不在于设备多高端、资源多丰富，而在于<strong>持续、规律、符合认知规律的有效输入</strong>。按照本方案稳步推进，既能顺利达成 KET 听力备考目标，也能为后续长期英语学习打下扎实的听力基础。</p>
+  <p>本方案以孩子的真实水平（CEFR A2、KET 备考轨道）为锚点，以改造后的 iPad 为学习终端，通过<strong>能力线与应试线双线并行、三阶段平滑推进、标准化每日流程</strong>，既解决「听得懂故事做不对题」的能力错位，也避免「只刷题听不懂真实对话」的应试陷阱。</p>
+  <p>听力提升的核心不在于设备与资源多寡，而在于<strong>持续、规律、可理解的输入</strong>。按本方案稳步推进 5–7 个月，孩子不仅能达到 KET 听力的考试标准（≥ 80% 正确率），更能建立真实的英语听觉能力，为后续 PET 与长期英语学习打下基础。</p>
 </div>
 
 <div class="footer">
-  KET Listening Study Plan · 适配小学二三年级 · iPad 学习终端版
+  KET Listening Comprehensive Plan · A2 起点版 · 适配小学低龄段 + iPad 学习终端
+  <div style="margin-top:8px;"><a href="ket-scale-map.html" style="color:inherit;text-decoration:underline;text-underline-offset:3px;">查看《KET 听力教材同尺度对标图》→</a></div>
 </div>
 
 </main>
